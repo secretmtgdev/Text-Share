@@ -1,0 +1,21 @@
+:root {
+    --general-padding: 25px;
+    --general-margin: 25px;
+}
+
+#app-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#app-container > * {
+    margin: var(--general-margin);
+    padding: var(--general-padding);
+}
+
+#passage {
+    height: 100%;
+    width: 50%;
+}

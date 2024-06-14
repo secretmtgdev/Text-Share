@@ -2,6 +2,7 @@ import React, { FormEvent, useEffect, useState } from "react";
 
 import './FileUpload.css';
 import axios from "axios";
+import { FILES_ENDPOINT, FILE_ENDPOINT } from "../../utils/Endpoints";
 
 const FileUpload = () => {
     const [files, setFiles] = useState<FileList>();
@@ -28,12 +29,10 @@ const FileUpload = () => {
         }
 
         const data = new FormData();
-        console.error(files[0]);
         data.append('file', files[0]);
-
-        try {
+        try {            
             // leverage axios for progress tracking
-            const response = await axios.post('http://127.0.0.1:5000/files', 
+            const response = await axios.post(FILE_ENDPOINT, 
                 data,
                 {
                     headers: {

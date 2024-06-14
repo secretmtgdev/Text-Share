@@ -19,3 +19,10 @@ Emulates a standard word search functionality of a document with highlighting. T
 ## How to run
 - Client `npm start`
 - Server `flask --app PyAPI.py run`
+
+## Q & A
+- What can this project do?
+    - Read files from blob storage
+    - Upload files to the database & blob storage
+- Will this project be expanded on?
+    - Most likely yes but it is more of a sandbox to try things out for a bigger project
