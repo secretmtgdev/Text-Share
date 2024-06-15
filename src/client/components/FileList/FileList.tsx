@@ -7,6 +7,7 @@ import './FileList.css';
 import { IFileBlob } from "@src/client/utils/Types";
 
 const FileList = () => {
+    const decoder = new TextDecoder();
     const [fileList, setFileList] = useState(['']);
     useEffect(() => {
         const getFiles = async () => {
@@ -30,9 +31,12 @@ const FileList = () => {
                 }
             });
 
-            const decoder = new TextDecoder('utf-8');
-            const decodedText = (JSON.parse(decoder.decode(response.data)) as IFileBlob).blobData;
-            document.getElementById('passage')!.innerText = decodedText;
+            const decodedData = decoder.decode(response.data);
+            const parsedData = JSON.parse(decodedData);
+            const decodedText = (parsedData as IFileBlob).blobData;
+
+            /** Using .innerText forces a reflow whereas textContent does not */
+            document.getElementById('passage')!.textContent = decodedText;
         } catch (error) {
             console.error('Could not get file', error);
         }
