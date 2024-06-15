@@ -1,6 +1,6 @@
-# Word Search
+# Kindle-like prototype
 ## Objective
-Emulates a standard word search functionality of a document with highlighting. This is a small project that leverages the RESTful architecture for uploading and reading files.
+This is a small project that leverages the RESTful architecture for uploading and reading files. The idea is to design a smooth system to handle fast and efficient data transer between the frontend and backend emulating that of Kindle.
 
 ## Tech stack
 - Frontend
