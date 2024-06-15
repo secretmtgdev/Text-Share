@@ -1,6 +1,7 @@
 # Kindle-like prototype
 ## Objective
 This is a small project that leverages the RESTful architecture for uploading and reading files. The idea is to design a smooth system to handle fast and efficient data transer between the frontend and backend emulating that of Kindle.
+![High level design](https://github.com/secretmtgdev/Kindle-like-prototype/blob/master/assets/design/design_1.jpeg)
 
 ## Tech stack
 - Frontend
