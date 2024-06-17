@@ -32,7 +32,7 @@ const FileOptions = () => {
                 <FontAwesomeIcon icon={faTrash} />
             </button>
         </div>
-    )
+    );
 };
 
 export default FileOptions;

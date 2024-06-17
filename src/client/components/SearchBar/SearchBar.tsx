@@ -6,10 +6,10 @@
  */
 
 import React, { useState } from "react";
-
-import './SearchBar.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+
+import './SearchBar.css';
 
 const SearchBar = () => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -32,4 +32,3 @@ const SearchBar = () => {
 }
 
 export default SearchBar;
-

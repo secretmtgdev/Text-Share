@@ -1,3 +1,9 @@
+/**
+ * Generic modal component designed to lock user actions that don't apply to the modal.
+ * 
+ * @version 1.0.0
+ * @author Michael Wilson
+ */
 import React from 'react';
 
 import './CenteredModal.css';
@@ -13,7 +19,7 @@ const CenteredModal = ({title, form}: ICenterModalProps) => {
             <h1>{title}</h1>
             {form}
         </div>
-    )
+    );
 }
 
 export default CenteredModal;

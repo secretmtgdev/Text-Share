@@ -1,8 +1,17 @@
+/**
+ * Allows users to upload files to the drive.
+ * 
+ * @version 1.0.0
+ * @author Michael Wilson
+ */
+
 import React, { FormEvent, useEffect, useState } from "react";
+import axios from "axios";
+
+import { FILE_ENDPOINT } from "../../utils/Endpoints";
+
 
 import './FileUpload.css';
-import axios from "axios";
-import { FILES_ENDPOINT, FILE_ENDPOINT } from "../../utils/Endpoints";
 
 const FileUpload = () => {
     const [files, setFiles] = useState<FileList>();
@@ -65,7 +74,7 @@ const FileUpload = () => {
                 {canUpload && <button>Upload</button>}
             </form>
         </div>
-    )
-}
+    );
+};
 
 export default FileUpload;

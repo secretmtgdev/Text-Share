@@ -1,28 +1,34 @@
+/**
+ * Lists the files that are available to the current user.
+ * 
+ * @version 1.0.0
+ * @author Michael Wilson
+ */
+
 import axios, { AxiosError } from "axios";
 import React, { useEffect, useState } from "react";
 
 import { FILES_ENDPOINT, FILE_ENDPOINT } from "../../utils/Endpoints";
+import { IError, IFileBlob } from "../../utils/Types";
+import UnableToLoadFiles from "../Errors/UnableToLoadFiles";
 
 import './FileList.css';
-import { IFileBlob } from "@src/client/utils/Types";
-import UnableToLoadFiles from "../Errors/UnableToLoadFiles";
+
 
 const FileList = () => {
     const decoder = new TextDecoder();
     const [fileList, setFileList] = useState(['']);
-    const [errorEncountered, setErrorEncountered] = useState(false);
-    const [errorCode, setErrorCode] = useState(0);
-    const [errorMessage, setErrorMessage] = useState('');
+    const [error, setError] = useState<IError>();
     useEffect(() => {
         const getFiles = async () => {
             try {
                 const response = await axios.get(FILES_ENDPOINT);
                 setFileList(response.data.fileNames);
             } catch (error) {
-                setErrorEncountered(true);
-                setErrorCode(500);
-                setErrorMessage(`Could not get files due to ${(error as AxiosError).message}`);
-                console.error(error);
+                setError({
+                    code: 500,
+                    message: `Could not get files due to ${(error as AxiosError).message}`
+                });
             }
         }
 
@@ -45,9 +51,10 @@ const FileList = () => {
             /** Using .innerText forces a reflow whereas textContent does not */
             document.getElementById('passage')!.textContent = decodedText;
         } catch (error) {
-            setErrorEncountered(true);
-            setErrorCode(500);
-            setErrorMessage(`Could not get file data: ${(error as AxiosError).message}`);
+            setError({
+                code: 503,
+                message: `Could not get file data: ${(error as AxiosError).message}`
+            });
         }
     }
 
@@ -58,9 +65,9 @@ const FileList = () => {
                     {fileList.map(fileName => <li onClick={()=> getFile(fileName)}>{fileName}</li>)}
                 </ul>)
             }
-            {errorEncountered && <UnableToLoadFiles code={errorCode} message={errorMessage} />}     
+            {error && <UnableToLoadFiles code={error.code} message={error.message} />}     
         </>
-    )
-}
+    );
+};
 
 export default FileList;

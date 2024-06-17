@@ -24,7 +24,7 @@ const SignUpForm = () => {
             <label htmlFor="signup-email">Email:</label>
             <input type="text" id="signup-email" name="email"></input>
         </form>
-    )
+    );
 }
 
 export default SignUpForm;

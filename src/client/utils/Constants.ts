@@ -29,4 +29,4 @@ export const navDirectories: INavDirectoryItem[] = [
         name: 'Trash',
         icon: faTrash
     }
-]
+];

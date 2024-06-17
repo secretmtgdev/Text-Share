@@ -27,7 +27,7 @@ const SignUp = () => {
                 </div>
             )}
         </>
-    )
+    );
 }
 
 /** Connect this component to the global store */

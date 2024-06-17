@@ -24,7 +24,7 @@ const GenericError = ({ title, message, imgRef }: GenericErrorProps) => {
             {imgRef && 
                 <img src={imgRef.src} alt={imgRef.alt} />}
         </div>
-    )
-}
+    );
+};
 
 export default GenericError;

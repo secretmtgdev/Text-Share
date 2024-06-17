@@ -12,7 +12,7 @@ import GenericError from "./GenericError";
 const UnableToLoadFiles = ({ code, message }: IError) => {
     return (
         <GenericError title={'Unable to load files'} message={`${code}: ${message}`} />
-    )
-}
+    );
+};
 
-export default UnableToLoadFiles
+export default UnableToLoadFiles;
