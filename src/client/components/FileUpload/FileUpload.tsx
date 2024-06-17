@@ -47,22 +47,24 @@ const FileUpload = () => {
     }
 
     return (
-        <form
-            onSubmit={handleSubmit}
-            id='file-upload'
-            method='post'
-            encType='multipart/form-data'>
-            <label htmlFor='file'>Select text file</label>
-            <input
-                onChange={handleTextFileUpload}
-                id='filesToUpload'
-                type='file'
-                name='filesToUpload'
-                accept='.txt'
-                form="file-upload"
-                required/>
-            {canUpload && <button>Upload</button>}
-        </form>
+        <div id='file-upload-container'>
+            <form
+                onSubmit={handleSubmit}
+                id='file-upload'
+                method='post'
+                encType='multipart/form-data'>
+                <label htmlFor='file'>Select text file</label>
+                <input
+                    onChange={handleTextFileUpload}
+                    id='filesToUpload'
+                    type='file'
+                    name='filesToUpload'
+                    accept='.txt'
+                    form="file-upload"
+                    required/>
+                {canUpload && <button>Upload</button>}
+            </form>
+        </div>
     )
 }
 

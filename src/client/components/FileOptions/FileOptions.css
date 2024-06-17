@@ -1,0 +1,18 @@
+#file-options-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#file-options-container > button {
+    padding: 0;
+    border: 0;
+    background: None;
+    transition: transform 0.1s ease-in-out;
+}
+
+#file-options-container > button:hover {
+    cursor: pointer;
+    transform: scale(1.5);
+}

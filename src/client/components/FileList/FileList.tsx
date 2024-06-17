@@ -1,21 +1,28 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import React, { useEffect, useState } from "react";
 
 import { FILES_ENDPOINT, FILE_ENDPOINT } from "../../utils/Endpoints";
 
 import './FileList.css';
 import { IFileBlob } from "@src/client/utils/Types";
+import UnableToLoadFiles from "../Errors/UnableToLoadFiles";
 
 const FileList = () => {
     const decoder = new TextDecoder();
     const [fileList, setFileList] = useState(['']);
+    const [errorEncountered, setErrorEncountered] = useState(false);
+    const [errorCode, setErrorCode] = useState(0);
+    const [errorMessage, setErrorMessage] = useState('');
     useEffect(() => {
         const getFiles = async () => {
             try {
                 const response = await axios.get(FILES_ENDPOINT);
                 setFileList(response.data.fileNames);
             } catch (error) {
-                console.error('Could not get files', error);
+                setErrorEncountered(true);
+                setErrorCode(500);
+                setErrorMessage(`Could not get files due to ${(error as AxiosError).message}`);
+                console.error(error);
             }
         }
 
@@ -38,7 +45,9 @@ const FileList = () => {
             /** Using .innerText forces a reflow whereas textContent does not */
             document.getElementById('passage')!.textContent = decodedText;
         } catch (error) {
-            console.error('Could not get file', error);
+            setErrorEncountered(true);
+            setErrorCode(500);
+            setErrorMessage(`Could not get file data: ${(error as AxiosError).message}`);
         }
     }
 
@@ -49,6 +58,7 @@ const FileList = () => {
                     {fileList.map(fileName => <li onClick={()=> getFile(fileName)}>{fileName}</li>)}
                 </ul>)
             }
+            {errorEncountered && <UnableToLoadFiles code={errorCode} message={errorMessage} />}     
         </>
     )
 }

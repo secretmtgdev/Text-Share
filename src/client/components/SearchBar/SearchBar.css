@@ -1,0 +1,11 @@
+#navbar-search {
+    width: 100%;
+}
+
+#navbar-search > input {
+    width: 80%;
+}
+
+#navbar-search > * {
+    height: 100%;
+}
