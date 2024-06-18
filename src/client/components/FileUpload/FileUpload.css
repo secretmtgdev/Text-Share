@@ -4,3 +4,29 @@
     justify-content: center;
     align-items: center;
 }
+
+#files-to-upload {
+    display: none;
+}
+
+.file-upload-wrapper {
+    height: 50px;
+    line-height: 50px;
+    transition: background var(--animation-speed-fast) ease-in-out;
+    border-radius: 10px;
+}
+
+.file-upload-wrapper:hover {
+    cursor: pointer;
+    background: lightblue;
+}
+
+.file-upload-wrapper > span {
+    padding: 5px;
+}
+
+/* Some of the content is blocked, most likely by the files-to-upload not being displayed.
+ * This styling covers all grounds. */
+.file-upload-wrapper *:hover {
+    cursor: pointer;
+}

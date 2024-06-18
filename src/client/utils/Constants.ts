@@ -4,7 +4,8 @@ import { INavDirectoryItem } from "./Types";
 export const mapStateToProps = (state: any) => {
     return {
         loginState: state.loginState,
-        signupState: state.signupState
+        signupState: state.signupState,
+        fileState: state.fileState
     };
 };
 
@@ -14,7 +15,7 @@ export const navDirectories: INavDirectoryItem[] = [
         icon: faCloud
     },
     {
-        name: 'Shared with me',
+        name: 'Shared with Me',
         icon: faPeopleGroup
     },
     {

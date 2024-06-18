@@ -2,6 +2,7 @@
     --general-padding: 25px;
     --general-margin: 25px;
     --left-width: 25%;
+    --animation-speed-fast: 0.1s;
 }
 
 #app-container {

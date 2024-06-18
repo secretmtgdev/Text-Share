@@ -5,17 +5,19 @@
  * @author Michael Wilson
  */
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useTranslation } from "react-i18next";
 
-import { INavDirectoryItem } from "@src/client/utils/Types";
+import { INavDirectoryItem } from "../../utils/Types";
 
 import './NavDirectoryItem.css';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const NavDirectoryItem = ({ name, icon }: INavDirectoryItem) => {
+    const { t } = useTranslation('directories/navDirectories');
     return (
         <li>
             <span><FontAwesomeIcon icon={icon} /></span>
-            <span>{name}</span>
+            <span>{t(name)}</span>
         </li>
     );
 };

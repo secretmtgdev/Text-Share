@@ -7,67 +7,54 @@
 
 import axios, { AxiosError } from "axios";
 import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
 
-import { FILES_ENDPOINT, FILE_ENDPOINT } from "../../utils/Endpoints";
-import { IError, IFileBlob } from "../../utils/Types";
 import UnableToLoadFiles from "../Errors/UnableToLoadFiles";
+import FileListItem from "./FileListItem";
+import { mapStateToProps } from "../../utils/Constants";
+import { FILES_ENDPOINT } from "../../utils/Endpoints";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { setFileErrorState } from "../../redux/fileSlice";
+import { ERROR_TYPES } from "../..//utils/Types";
 
 import './FileList.css';
 
 
 const FileList = () => {
-    const decoder = new TextDecoder();
+    const dispatch = useAppDispatch();
+    const fileState = useAppSelector(state => state.fileState);
     const [fileList, setFileList] = useState(['']);
-    const [error, setError] = useState<IError>();
     useEffect(() => {
         const getFiles = async () => {
             try {
                 const response = await axios.get(FILES_ENDPOINT);
                 setFileList(response.data.fileNames);
             } catch (error) {
-                setError({
-                    code: 500,
-                    message: `Could not get files due to ${(error as AxiosError).message}`
-                });
+                dispatch(
+                    setFileErrorState({
+                        type: ERROR_TYPES.FILE_LIST,
+                        code: 500,
+                        message: `Could not get files due to ${(error as AxiosError).message}`
+                    })
+                );
             }
         }
 
         getFiles();
-    }, []);
+    }, [dispatch]);
 
-    const getFile = async (fileName: string) => {
-        try {
-            const response = await axios.get(FILE_ENDPOINT, {
-                responseType: 'arraybuffer',
-                params: {
-                    fileName
-                }
-            });
-
-            const decodedData = decoder.decode(response.data);
-            const parsedData = JSON.parse(decodedData);
-            const decodedText = (parsedData as IFileBlob).blobData;
-
-            /** Using .innerText forces a reflow whereas textContent does not */
-            document.getElementById('passage')!.textContent = decodedText;
-        } catch (error) {
-            setError({
-                code: 503,
-                message: `Could not get file data: ${(error as AxiosError).message}`
-            });
-        }
-    }
+    console.error(`ERROR TYPE IS ${fileState.type}, is it ${ERROR_TYPES.FILE_LIST}?`);
 
     return (
         <>
             {fileList.length > 0 && 
-                (<ul>
-                    {fileList.map(fileName => <li onClick={()=> getFile(fileName)}>{fileName}</li>)}
-                </ul>)
+                (<div role='list'>
+                    {fileList.map(fileName => <FileListItem key={fileName} fileName={fileName} />)}
+                </div>)
             }
-            {error && <UnableToLoadFiles code={error.code} message={error.message} />}     
+            {!!fileState.code && fileState.type === ERROR_TYPES.FILE_LIST && <UnableToLoadFiles />}     
         </>
     );
 };
 
-export default FileList;
+export default connect(mapStateToProps)(FileList);

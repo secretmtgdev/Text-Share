@@ -31,7 +31,6 @@ function App() {
           <NavDirectories />
         </div>
         <div className='right-column'>
-          <FileOptions />
           <FileList />
         </div>
       </div>

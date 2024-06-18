@@ -1,0 +1,12 @@
+.icon-wrapper:hover {
+    cursor: pointer;
+}
+
+.icon-btn {
+    padding: 10px;
+    border-radius: 50%;
+}
+
+.icon-btn:hover {
+    background-color: lightgrey;
+}

@@ -9,7 +9,7 @@
     padding: 0;
     border: 0;
     background: None;
-    transition: transform 0.1s ease-in-out;
+    transition: transform var(--animation-speed-fast) ease-in-out;
 }
 
 #file-options-container > button:hover {

@@ -13,7 +13,10 @@ export const signupSlice = createSlice({
     initialState,
     reducers: {
         setSigningUpState: (state, action: PayloadAction<boolean>) => {
-            state.isSigningUp = action.payload
+            return {
+                ...state,
+                isSigningUp: action.payload
+            };
         }
     }
 });

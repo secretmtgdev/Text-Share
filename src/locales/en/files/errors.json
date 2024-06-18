@@ -1,0 +1,5 @@
+{
+    "unableToLoadFiles": "Unable to load files",
+    "unableToUploadFile": "Unable to upload file",
+    "errorMessage": "{{code}}: {{message}}"
+}

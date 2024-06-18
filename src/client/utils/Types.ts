@@ -14,7 +14,13 @@ export interface IImage {
     src: string;
 }
 
+export enum ERROR_TYPES {
+    FILE_LIST,
+    FILE_UPLOAD
+}
+
 export interface IError {
-    code: number;
-    message: string;
+    type?: ERROR_TYPES;
+    code?: number;
+    message?: string;
 }

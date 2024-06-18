@@ -1,5 +1,5 @@
 /**
- * Inform the user that content was not able to be loaded from the server.
+ * Inform the user that content was not able to be pushed to the server.
  * 
  * @version 1.0.0
  * @author Michael Wilson
@@ -13,12 +13,12 @@ import { useAppSelector } from "../../redux/hooks";
 import { mapStateToProps } from "../../utils/Constants";
 import { TranslationKeys } from "./TranslationKeys";
 
-const UnableToLoadFiles = () => {
+const UnableToUploadFile = () => {
     const { t } = useTranslation('files/errors');
     const fileState = useAppSelector(state => state.fileState);
     return (
         <GenericError
-            title={t(TranslationKeys.unableToLoadFiles)} 
+            title={t(TranslationKeys.unableToUploadFile)} 
             message={t(TranslationKeys.errorMessage, { 
                 code: `${fileState.code}`,
                 message: fileState.message}
@@ -27,4 +27,4 @@ const UnableToLoadFiles = () => {
     );
 };
 
-export default connect(mapStateToProps)(UnableToLoadFiles);
+export default connect(mapStateToProps)(UnableToUploadFile);

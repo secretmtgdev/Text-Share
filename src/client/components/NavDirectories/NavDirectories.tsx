@@ -9,11 +9,12 @@ import React from "react";
 
 import { navDirectories } from "../../utils/Constants";
 import NavDirectoryItem from "./NavDirectoryItem";
+import { TranslationKeys } from "./TranslationKeys";
 
 const NavDirectories = () => {
     return (
         <ul id='nav-directories-list'>
-            {navDirectories.map(directoryItem => <NavDirectoryItem {...directoryItem} />)}
+            {navDirectories.map(directoryItem => <NavDirectoryItem key={directoryItem.name} name={TranslationKeys[directoryItem.name]} icon={directoryItem.icon}/>)}
         </ul>
     );
 }
