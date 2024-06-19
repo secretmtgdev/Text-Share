@@ -15,8 +15,8 @@ import UnableToUploadFile from "../Errors/UnableToUploadFile";
 import { FILE_ENDPOINT } from "../../utils/Endpoints";
 import { TranslationKeys } from "./TranlsationKeys";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { setFileErrorState } from "../../redux/fileSlice";
-import { ERROR_TYPES } from "../../utils/Types";
+import { setFileActionPerformed, setFileErrorState } from "../../redux/fileSlice";
+import { ERROR_TYPES, FILE_ACTIONS } from "../../utils/Types";
 
 import './FileUpload.css';
 
@@ -30,12 +30,14 @@ const FileUpload = () => {
     useEffect(() => {
         if (files && files?.length > 0) {
             setCanUpload(true);
+        } else {
+            setCanUpload(false);
         }
     }, [files])
 
     const handleTextFileUpload = async () => {
-        const textFile = document.getElementById('filesToUpload') as HTMLInputElement;
-        if (textFile.files && textFile.files.length > 0) {
+        const textFile = document.getElementById('files-to-upload') as HTMLInputElement;
+        if (textFile && textFile.files && textFile.files.length > 0) {
             setFiles(textFile.files);
         }
     }
@@ -50,7 +52,7 @@ const FileUpload = () => {
         data.append('file', files[0]);
         try {            
             // leverage axios for progress tracking
-            await axios.post(FILE_ENDPOINT, 
+            const response = await axios.post(FILE_ENDPOINT, 
                 data,
                 {
                     headers: {
@@ -58,7 +60,15 @@ const FileUpload = () => {
                     }
                 }
             );
+
+            if (response.status === 200) {
+                setFiles({} as FileList);
+                dispatch(
+                    setFileActionPerformed(FILE_ACTIONS.FILE_UPLOAD)
+                );
+            }
         } catch (error) {
+            console.error(error);
             dispatch(
                 setFileErrorState({
                     type: ERROR_TYPES.FILE_LIST,
@@ -94,7 +104,7 @@ const FileUpload = () => {
                         required/>
                 </div>                
                 {canUpload && <button>Upload</button>}
-                {!!fileState.code && fileState.type as ERROR_TYPES === ERROR_TYPES.FILE_UPLOAD && <UnableToUploadFile />}   
+                {!!fileState.error.code && fileState.error.type as ERROR_TYPES === ERROR_TYPES.FILE_UPLOAD && <UnableToUploadFile />}   
             </form>
         </div>
     );

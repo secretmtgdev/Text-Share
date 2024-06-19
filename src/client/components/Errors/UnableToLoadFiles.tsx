@@ -20,8 +20,8 @@ const UnableToLoadFiles = () => {
         <GenericError
             title={t(TranslationKeys.unableToLoadFiles)} 
             message={t(TranslationKeys.errorMessage, { 
-                code: `${fileState.code}`,
-                message: fileState.message}
+                code: `${fileState.error.code}`,
+                message: fileState.error.message}
             )}
         />
     );

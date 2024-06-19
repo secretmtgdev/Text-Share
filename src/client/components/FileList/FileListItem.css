@@ -1,0 +1,13 @@
+.file-list-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 1px solid lightgrey;
+}
+
+.file-list-item-name {
+    flex-grow: 1;
+    padding-left: var(--general-padding);
+    display: flex;
+    align-items: center;
+}

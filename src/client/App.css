@@ -25,6 +25,7 @@
 }
 
 .debug-mode {
+    box-sizing: border-box;
     border: 1px solid black;
 }
 
@@ -35,4 +36,10 @@
 .right-column {
     width: calc(100% - --left-width);
     flex-grow: 1;
+}
+
+li:hover, div[role='listitem']:hover {
+    cursor: pointer;
+    border: 1px solid blue;
+    box-sizing: border-box; /** Keep border in calculation of dimensions */
 }

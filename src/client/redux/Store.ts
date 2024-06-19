@@ -9,7 +9,15 @@ export const store = configureStore({
         loginState: loginSlice,
         signupState: signupSlice,
         fileState: fileSlice
-    }
+    },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+          serializableCheck: {
+            ignoredActions: ["setFileActionPerformed"],
+            ignoredPaths: ["fileState.actionPerformed"]
+          },
+        }
+    )
 });
 
 export default store;

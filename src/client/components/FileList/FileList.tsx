@@ -4,7 +4,6 @@
  * @version 1.0.0
  * @author Michael Wilson
  */
-
 import axios, { AxiosError } from "axios";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
@@ -16,9 +15,6 @@ import { FILES_ENDPOINT } from "../../utils/Endpoints";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { setFileErrorState } from "../../redux/fileSlice";
 import { ERROR_TYPES } from "../..//utils/Types";
-
-import './FileList.css';
-
 
 const FileList = () => {
     const dispatch = useAppDispatch();
@@ -41,9 +37,7 @@ const FileList = () => {
         }
 
         getFiles();
-    }, [dispatch]);
-
-    console.error(`ERROR TYPE IS ${fileState.type}, is it ${ERROR_TYPES.FILE_LIST}?`);
+    }, [dispatch, fileState.actionPerformed]);
 
     return (
         <>
@@ -52,7 +46,7 @@ const FileList = () => {
                     {fileList.map(fileName => <FileListItem key={fileName} fileName={fileName} />)}
                 </div>)
             }
-            {!!fileState.code && fileState.type === ERROR_TYPES.FILE_LIST && <UnableToLoadFiles />}     
+            {!!fileState.error.code && fileState.error.type === ERROR_TYPES.FILE_LIST && <UnableToLoadFiles />}     
         </>
     );
 };

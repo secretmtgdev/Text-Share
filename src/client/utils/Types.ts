@@ -15,6 +15,7 @@ export interface IImage {
 }
 
 export enum ERROR_TYPES {
+    FILE_DELETE,
     FILE_LIST,
     FILE_UPLOAD
 }
@@ -23,4 +24,10 @@ export interface IError {
     type?: ERROR_TYPES;
     code?: number;
     message?: string;
+}
+
+export enum FILE_ACTIONS {
+    NONE,
+    FILE_DELETE,
+    FILE_UPLOAD
 }

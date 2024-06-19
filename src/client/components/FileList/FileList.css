@@ -1,6 +1,0 @@
-li:hover {
-    cursor: pointer;
-    border: 1px solid blue;
-    background-color: lightblue;
-    box-sizing: border-box; /** Keep border in calculation of dimensions */
-}

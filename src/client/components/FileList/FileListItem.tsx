@@ -13,6 +13,9 @@ import { IFileBlob } from "../../utils/Types";
 import { mapStateToProps } from "../../utils/Constants";
 import { useAppDispatch } from "../../redux/hooks";
 import { setFileErrorState } from "../../redux/fileSlice";
+import FileOptions from "../FileOptions/FileOptions";
+
+import './FileListItem.css';
 
 export interface FileListItemProps {
     fileName: string;
@@ -45,8 +48,13 @@ const FileListItem = ({ fileName }: FileListItemProps) => {
             );
         }
     }
+
     return (
-        <div role='listitem' onClick={()=> getFile(fileName)}>
+        <div role='listitem' className='file-list-item'>
+            <div className='file-list-item-name' onClick={()=> getFile(fileName)}>
+                {fileName}
+            </div>
+            <FileOptions fileName={fileName} />
         </div>
     );
 };

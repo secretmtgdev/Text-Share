@@ -1,6 +1,7 @@
 export const TranslationKeys = {
     shareWithUser: 'shareWithUser',
-    downloadFile: 'shareWithUser',
-    renameFile: 'shareWithUser',
-    addToFavorites: 'shareWithUser'
+    downloadFile: 'downloadFile',
+    renameFile: 'renameFile',
+    addToFavorites: 'addToFavorites',
+    deleteFile: 'deleteFile'
 };

@@ -9,7 +9,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
 import './IconWrapper.css';
-import { useTranslation } from 'react-i18next';
 
 export interface IconWrapperProps {
     onClickHandler: () => void;
@@ -18,12 +17,11 @@ export interface IconWrapperProps {
 }
 
 const IconWrapper = ({ onClickHandler, ariaLabel, icon }: IconWrapperProps) => {
-    const { t } = useTranslation();
     return (
-        <div className='icon-wrapper' onClick={onClickHandler}>
-            <a className='icon-btn' aria-label={t(ariaLabel)}>
+        <div className='icon-wrapper' onClick={onClickHandler} title={ariaLabel}>
+            <div role='button' className='icon-btn' aria-label={ariaLabel}>
                 <FontAwesomeIcon icon={icon} />
-            </a>
+            </div>
         </div>
     )
 };

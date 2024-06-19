@@ -3,6 +3,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
+    padding: var(--general-padding);
 }
 
 #file-options-container > button {

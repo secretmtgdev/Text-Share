@@ -1,15 +1,13 @@
 import { useEffect } from 'react';
 
 import FileList from './components/FileList/FileList.tsx';
-import FileOptions from './components/FileOptions/FileOptions.tsx';
 import FileUpload from './components/FileUpload/FileUpload.tsx';
-import NavBar from './components/NavBar/NavBar.tsx';
 import NavDirectories from './components/NavDirectories/NavDirectories.tsx';
 
 import './App.css';
 
 // TODO: Set this in a configuration file
-const IS_DEBUG_MODE = false;
+const IS_DEBUG_MODE = true;
 
 function App() {
   /** Render debug mode after the content has loaded into the DOM */
@@ -24,7 +22,6 @@ function App() {
 
   return (
     <div id='app-container'>
-      <NavBar />
       <div id='file-controls-container'>
         <div className='left-column'>
           <FileUpload />
