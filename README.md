@@ -1,6 +1,6 @@
 # Drive share prototype
 ## Objective
-This is a small project that leverages the RESTful architecture for uploading and reading files. The idea is to design a smooth system to handle fast and efficient data transer between the frontend and backend emulating that of Kindle. Feel free to read the [design doc](https://github.com/secretmtgdev/Kindle-like-prototype/blob/master/DesignDoc.md)
+This is a small project that leverages the RESTful architecture for uploading and reading files. The idea is to design a smooth system to handle fast and efficient data transer between the frontend and backend emulating that of Kindle. Feel free to read the [design doc](https://github.com/secretmtgdev/Kindle-like-prototype/blob/master/documents/DesignDoc.md)
 ![High level design](https://github.com/secretmtgdev/Kindle-like-prototype/blob/master/assets/design/design_1.jpeg)
 ![Current UI](https://github.com/secretmtgdev/Kindle-like-prototype/blob/master/assets/client_images/ui_6_18_2024.png)
 
@@ -34,7 +34,7 @@ This is a small project that leverages the RESTful architecture for uploading an
     - file_datastore
     - shared_files
 
-**_For more information, please refer to the following [Database document](https://github.com/secretmtgdev/Kindle-like-prototype/blob/master/DatabaseDoc.md)_**
+**_For more information, please refer to the [Database document](https://github.com/secretmtgdev/Kindle-like-prototype/blob/master/documents/DatabaseDoc.md)_**
 - What does the accounts table do?
     - Stores information on the username, password, email, and associated text via a list of filenames
     - Passwords are to be encrypted with a gen_salt algorithm

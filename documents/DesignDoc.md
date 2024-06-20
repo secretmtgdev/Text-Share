@@ -42,3 +42,6 @@ Drive share is a file storage service to store text documents. You can access te
 ## High level design
 At the very top level there should be a directory for the drive. Users should then be able to upload their own files which will in turn be placed in their drive.
 ![Directory sharing](https://github.com/secretmtgdev/Kindle-like-prototype/blob/master/assets/design/directory_share.jpeg)
+
+## The Database
+**_Please refer to the [Database document](https://github.com/secretmtgdev/Kindle-like-prototype/blob/master/documents/DatabaseDoc.md)_**
