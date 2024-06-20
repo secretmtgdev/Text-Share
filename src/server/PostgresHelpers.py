@@ -1,6 +1,6 @@
 import psycopg2
 
-import Contsants;
+import Constants
 
 connection = psycopg2.connect(database='ShareDrive', host='localhost', port='5432')
 def dbContainsFile(fileName):
@@ -8,7 +8,7 @@ def dbContainsFile(fileName):
     try:
         with connection.cursor() as cur:
             print(f'CHECKING IF {fileName} EXISTS IN DB')
-            cur.execute(Contsants.GET_FILE_BY_NAME, (fileName,))
+            cur.execute(Constants.GET_FILE_BY_NAME, (fileName,))
             file_exists = cur.fetchone()
             print(f'RECORD RETURNED {file_exists}')
             if file_exists is not None:
@@ -25,7 +25,7 @@ def insertFile(fileName):
     try:
         with connection.cursor() as cur:            
             if not dbContainsFile(fileName=fileName):
-                cur.execute(Contsants.ADD_FILE, (fileName,))
+                cur.execute(Constants.ADD_FILE, (fileName,))
                 connection.commit()
             else:
                 print('FILE ALREADY IN DB')
@@ -64,7 +64,7 @@ def getFileFromDataStore(fileName):
     print('GETTING FILE FROM BLOB STOAGE')
     try:
         with connection.cursor() as cur:
-            cur.execute(Contsants.GET_BLOB_BY_FILE_NAME, (fileName,))
+            cur.execute(Constants.GET_BLOB_BY_FILE_NAME, (fileName,))
             record = cur.fetchone()
             return {
                 'blobData': bytes(record[0]).decode()
@@ -80,8 +80,8 @@ def getFileFromDataStore(fileName):
 def deleteFromDataStore(fileName):
     try:
         with connection.cursor() as cur:
-            cur.execute(Contsants.DELETE_FILE_BY_NAME, (fileName, ))
-            cur.execute(Contsants.DELETE_BLOB_BY_FILE_NAME, (fileName, ))
+            cur.execute(Constants.DELETE_FILE_BY_NAME, (fileName, ))
+            cur.execute(Constants.DELETE_BLOB_BY_FILE_NAME, (fileName, ))
             cur.close()
     except(Exception, psycopg2.DatabaseError) as error:
         print('ERROR WHEN DELETING {fileName} FROM TABLES')

@@ -20,7 +20,10 @@ This is a small project that leverages the RESTful architecture for uploading an
 
 ## How to run
 - Client `npm start`
-- Server `flask --app PyAPI.py run`
+- Server
+    - Flask: `flask --app PyAPI.py run`
+    - Notifications socket (under `server/notifications`): `python3 Notifications.py`
+
 
 ## Q & A
 - What can this project do?
@@ -45,3 +48,8 @@ This is a small project that leverages the RESTful architecture for uploading an
     - Acts as blob storage linking to the files table through the foreign key filename in files
 
  
+## Special thanks to the following resource owners
+- [How to build a simple real-time application using Flask, React and Socket.io](https://tinyurl.com/329ysur4) by Adrian Huber
+- [System Design V1](https://bytebytego.com/) by Alex Xu
+- [Postgres docs](https://www.postgresql.org/docs/current)
+- [Kafka quickstart](https://kafka.apache.org/quickstart)

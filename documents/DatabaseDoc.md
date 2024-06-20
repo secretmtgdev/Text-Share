@@ -47,7 +47,10 @@ Information is written on the disk. Despite the disk read being slow, this ensur
 	password: VARCHAR(255) NOT NULL,
 	email: VARCHAR(255) NOT NULL, --indexed for uniqueness
 	owned_files: TEXT[],
-	shared_files: TEXT[]
+	shared_files: TEXT[],
+	country_code: INTEGER,
+	phone_number: INTEGER,
+	created_at: TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 }
 ```
 
