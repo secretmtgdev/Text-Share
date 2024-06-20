@@ -32,7 +32,9 @@ This is a small project that leverages the RESTful architecture for uploading an
     - accounts
     - files
     - file_datastore
-![Postgres table schemas](https://github.com/secretmtgdev/Kindle-like-prototype/blob/master/assets/server_images/table_schemas.png)
+    - shared_files
+
+**_For more information, please refer to the following [Database document](https://github.com/secretmtgdev/Kindle-like-prototype/blob/master/DatabaseDoc.md)_**
 - What does the accounts table do?
     - Stores information on the username, password, email, and associated text via a list of filenames
     - Passwords are to be encrypted with a gen_salt algorithm
@@ -41,4 +43,5 @@ This is a small project that leverages the RESTful architecture for uploading an
     - Stores information about the filename, and upload date
 - What does the file_datastore table do?
     - Acts as blob storage linking to the files table through the foreign key filename in files
+
  
