@@ -12,7 +12,7 @@ import { FILE_ENDPOINT } from "../../utils/Endpoints";
 import { IFileBlob } from "../../utils/Types";
 import { mapStateToProps } from "../../utils/Constants";
 import { useAppDispatch } from "../../redux/hooks";
-import { setFileErrorState } from "../../redux/fileSlice";
+import { setFileErrorState, setSelectedFile } from "../../redux/fileSlice";
 import FileOptions from "../FileOptions/FileOptions";
 
 import './FileListItem.css';
@@ -39,11 +39,22 @@ const FileListItem = ({ fileName }: FileListItemProps) => {
 
             /** Using .innerText forces a reflow whereas textContent does not */
             document.getElementById('passage')!.textContent = decodedText;
+            dispatch(
+                setSelectedFile({
+                    name: fileName
+                })
+            );
         } catch (error) {
             dispatch(
                 setFileErrorState({
                     code: 503,
                     message: `Could not get file data: ${(error as AxiosError).message}`
+                })
+            );
+
+            dispatch(
+                setSelectedFile({
+                    name: ''
                 })
             );
         }

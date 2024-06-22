@@ -3,6 +3,7 @@ import { initReactI18next } from 'react-i18next';
 import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
+import modals from './locales/en/accounts/modals.json';
 import errors from './locales/en/files/errors.json';
 import options from './locales/en/files/options.json';
 import upload from './locales/en/files/upload.json';
@@ -10,6 +11,7 @@ import navDirectories from './locales/en/directories/navDirectories.json';
 
 const resources = {
     en: {
+        'accounts/modals': modals,
         'directories/navDirectories': navDirectories,
         'files/errors': errors,
         'files/options': options,

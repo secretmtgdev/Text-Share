@@ -5,19 +5,44 @@
  * @author Michael Wilson
  */
 import React from 'react';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { useTranslation } from 'react-i18next';
 
 import './CenteredModal.css';
+import { TranslationKeys } from './TranslationKeys';
+import IconWrapper from '../IconWrapper/IconWrapper';
+import { SetTargetFocus } from '../../utils/Utils';
 
 export interface ICenterModalProps {
+    closeModalHandler: () => void;
     title: string;
     form: React.ReactElement;
 }
 
-const CenteredModal = ({title, form}: ICenterModalProps) => {
+const CenteredModal = ({closeModalHandler, title, form}: ICenterModalProps) => {
+    const { t } = useTranslation('accounts/modals');
+    
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+        if (e.key === 'Escape') {
+            closeModalHandler();
+        }
+    }
+
     return (
-        <div id='centered-modal-container'>
-            <h1>{title}</h1>
-            {form}
+        <div id='centered-modal-container' className='flex-column-container'>
+            <div id='centered-modal-content' onKeyDown={handleKeyDown}>
+                <div className='modal-header'>
+                    <h1>{title}</h1>
+                    <IconWrapper
+                        onClickHandler={closeModalHandler}
+                        ariaLabel={t(TranslationKeys.closeModal, {
+                            modalName: title.toLocaleLowerCase()
+                        })}
+                        icon={faXmark}
+                    />
+                </div>
+                {form}
+            </div>
         </div>
     );
 }

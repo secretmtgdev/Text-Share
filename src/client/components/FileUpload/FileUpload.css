@@ -14,11 +14,7 @@
     line-height: 50px;
     transition: background var(--animation-speed-fast) ease-in-out;
     border-radius: 10px;
-}
-
-.file-upload-wrapper:hover {
-    cursor: pointer;
-    background: lightblue;
+    border: 1px solid black;
 }
 
 .file-upload-wrapper > span {

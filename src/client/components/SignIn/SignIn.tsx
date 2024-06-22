@@ -4,7 +4,7 @@
  * @verison 1.0.0
  * @author Michael Wilson
  */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
 import CenteredModal from "../Modal/CenteredModal";
@@ -19,13 +19,22 @@ const SignIn = () => {
     const dispatch = useAppDispatch();
     const loginState = useAppSelector(state => state.loginState);
     const signupState = useAppSelector(state => state.signupState);
+    const [showModal, setShowModal] = useState(false);
+    useEffect(() => {
+        setShowModal(loginState.isLoggingIn && !signupState.isSigningUp);
+    }, [loginState.isLoggingIn, signupState.isSigningUp]);
+
+    const handleModalClose = () => {
+        setShowModal(false);
+        dispatch(setLoggingInState(false));
+    };
 
     return (
         <>
             { !loginState.isLoggedIn && (
-                <div id='sign-in-container'>
+                <div id='sign-in-container' className='btn'>
                     <a onClick={() => dispatch(setLoggingInState(true))}>Sign In</a>
-                    {loginState.isLoggingIn && !signupState.isSigningUp && <CenteredModal title={'Log in'} form={<SignInForm />}/>}
+                    {showModal && <CenteredModal closeModalHandler={handleModalClose} title={'Log in'} form={<SignInForm />}/>}
                 </div>
             )}
         </>

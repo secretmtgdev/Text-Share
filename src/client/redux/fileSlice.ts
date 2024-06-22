@@ -1,17 +1,21 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { enableMapSet } from 'immer';
 
-import { FILE_ACTIONS, IError } from '../utils/Types';
+import { FILE_ACTIONS, IError, IFile } from '../utils/Types';
 
 enableMapSet();
 interface IFileState {
     actionPerformed: Map<FILE_ACTIONS, number>,
-    error: IError
+    error: IError,
+    selectedFile: IFile
 }
 
 const initialState: IFileState = {
     actionPerformed: new Map<FILE_ACTIONS, number>(),
-    error: {}
+    error: {},
+    selectedFile: {
+        name: ''
+    }
 };
 
 export const fileSlice = createSlice({
@@ -31,8 +35,14 @@ export const fileSlice = createSlice({
                 state.actionPerformed.set(action.payload, state.actionPerformed.get(action.payload)! + 1)
             }
         },
+        setSelectedFile: (state, action: PayloadAction<IFile>) => {
+            return {
+                ...state,
+                selectedFile: action.payload
+            }
+        }
     }
 });
 
-export const { setFileErrorState, setFileActionPerformed } = fileSlice.actions;
+export const { setFileErrorState, setFileActionPerformed, setSelectedFile } = fileSlice.actions;
 export default fileSlice.reducer;

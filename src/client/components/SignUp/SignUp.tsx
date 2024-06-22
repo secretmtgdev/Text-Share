@@ -5,7 +5,7 @@
  * @author Michael Wilson
  */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from 'react-redux';
 
 import CenteredModal from "../Modal/CenteredModal";
@@ -14,16 +14,28 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { setSigningUpState } from "../../redux/signupSlice";
 import SignUpForm from "./SignUpForm";
 
+import "./SignUp.css";
+
 const SignUp = () => {
     const dispatch = useAppDispatch();
     const loginState = useAppSelector(state => state.loginState);
     const signupState = useAppSelector(state => state.signupState)
+    const [showModal, setShowModal] = useState(false);
+    useEffect(() => {
+        setShowModal(signupState.isSigningUp && !loginState.isLoggingIn);
+    }, [signupState.isSigningUp, loginState.isLoggingIn]);
+
+    const handleModalClose = () => {
+        setShowModal(false);
+        dispatch(setSigningUpState(false));
+    };
+
     return (
         <>
             { !loginState.isLoggedIn && (
-                <div id='sign-up-container'>
+                <div id='sign-up-container' className='btn'>
                     <a onClick={() => dispatch(setSigningUpState(true))}>Sign Up</a>
-                    {signupState.isSigningUp && !loginState.isLoggingIn && <CenteredModal title={'Sign up'} form={<SignUpForm />} />}
+                    {showModal && <CenteredModal closeModalHandler={handleModalClose} title={'Sign up'} form={<SignUpForm />} />}
                 </div>
             )}
         </>

@@ -31,3 +31,7 @@ export enum FILE_ACTIONS {
     FILE_DELETE,
     FILE_UPLOAD
 }
+
+export interface IFile {
+    name: string;
+}

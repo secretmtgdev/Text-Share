@@ -1,0 +1,11 @@
+
+#renderer-container {
+    height: 100vh;
+    width: 100%;
+    padding: var(--general-padding);
+}
+
+#renderer-container > textarea {
+    height: 90%;
+    width: 90%;
+}

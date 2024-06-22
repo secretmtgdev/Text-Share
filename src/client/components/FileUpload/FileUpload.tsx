@@ -84,16 +84,16 @@ const FileUpload = () => {
     }
 
     return (
-        <div id='file-upload-container'>
+        <div id='file-upload-container' className='flex-column-container'>
             <form
                 onSubmit={handleSubmit}
                 id='file-upload'
                 method='post'
                 encType='multipart/form-data'>
                 
-                <div className='file-upload-wrapper' onClick={openFilePicker}>
+                <label className='file-upload-wrapper btn' onClick={openFilePicker} htmlFor='files-to-upload'>
                     <span><FontAwesomeIcon icon={faPlus} /></span>
-                    <span><label htmlFor='files-to-upload'>{t(TranslationKeys.fileUpload)}</label></span>
+                    <span>{t(TranslationKeys.fileUpload)}</span>
                     <input
                         onChange={handleTextFileUpload}
                         id='files-to-upload'
@@ -102,7 +102,7 @@ const FileUpload = () => {
                         accept='.txt'
                         form="file-upload"
                         required/>
-                </div>                
+                </label>                
                 {canUpload && <button>Upload</button>}
                 {!!fileState.error.code && fileState.error.type as ERROR_TYPES === ERROR_TYPES.FILE_UPLOAD && <UnableToUploadFile />}   
             </form>

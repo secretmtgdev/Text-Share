@@ -9,20 +9,9 @@ import json
 app = Flask(__name__)
 CORS(app)
 f = open("./notifications/NotificationConfig.json")
-data = json.load(f)
-kafka_config = data["kafka"]
-kafka_producer = kafka_config["producer"]
-producer = KafkaProducer(
-    bootstrap_servers=kafka_config["boostrap_servers"],
-    client_id=kafka_producer["flask_client_id"],
-    api_version=(kafka_config["api_version"])
-)
 
 @app.route('/file', methods=['GET', 'POST', 'DELETE'])
 def handleFile():
-    for topic in kafka_config["topics"]:
-        producer.send(topic, "TEST MESSAGE")
-
     match request.method:
         case 'POST':
             file = request.files.get('file')

@@ -1,3 +1,9 @@
 #sign-up-container > a:hover {
     cursor: pointer;
 }
+
+#signup-form {
+    display: flex;
+    flex-direction: column;
+    padding: var(--general-padding);
+}

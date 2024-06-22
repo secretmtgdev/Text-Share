@@ -78,6 +78,7 @@ def getFileFromDataStore(fileName):
             connection.commit()
 
 def deleteFromDataStore(fileName):
+    print('DELETING FROM BLOB STORAGE')
     try:
         with connection.cursor() as cur:
             cur.execute(Constants.DELETE_FILE_BY_NAME, (fileName, ))

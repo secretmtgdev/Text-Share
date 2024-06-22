@@ -5,7 +5,7 @@
     --animation-speed-fast: 0.1s;
 }
 
-#app-container {
+.flex-column-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -17,11 +17,6 @@
     flex-direction: row;
     width: 100%;
     height: 100%;
-}
-
-#passage {
-    height: 100vh;
-    width: 90%;
 }
 
 .debug-mode {
@@ -42,4 +37,21 @@ li:hover, div[role='listitem']:hover {
     cursor: pointer;
     border: 1px solid blue;
     box-sizing: border-box; /** Keep border in calculation of dimensions */
+}
+
+.btn:hover {
+    cursor: pointer;
+    background: lightblue;
+}
+
+.form {
+    flex-direction: column;
+    display: flex;
+    padding: var(--general-padding);
+}
+
+.form-label-container {
+    display: flex;
+    flex-direction: column;
+    padding: calc(var(--general-padding) / 2);
 }
