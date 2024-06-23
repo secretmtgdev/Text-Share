@@ -6,3 +6,8 @@
     width: 100%;
     padding: var(--small-padding);
 }
+
+.nav-btn {
+    background-color: white;
+    border: none;
+}

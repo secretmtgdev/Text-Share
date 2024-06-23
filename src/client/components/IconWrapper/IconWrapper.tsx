@@ -4,6 +4,7 @@
  * @version 1.0.0
  * @author Michael Wilson
  */
+
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
@@ -26,7 +27,7 @@ const IconWrapper = ({ onClickHandler, ariaLabel, icon }: IconWrapperProps) => {
     return (
         <div className='icon-wrapper' onClick={onClickHandler} title={ariaLabel} onKeyDown={onKeyDownHandler} tabIndex={0}>
             <div role='button' className='icon-btn' aria-label={ariaLabel} tabIndex={1}>
-                <FontAwesomeIcon icon={icon} />
+                <FontAwesomeIcon height='15px' width='15px' icon={icon} />
             </div>
         </div>
     )

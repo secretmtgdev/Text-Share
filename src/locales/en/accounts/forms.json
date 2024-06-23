@@ -1,0 +1,10 @@
+{
+    "username": "Username",
+    "password": "Password",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "email": "Email",
+    "phoneNumber": "Phone number",
+    "phoneNumberFormat": "Format",
+    "signUp": "Sign up"
+}

@@ -5,15 +5,20 @@
  * @author Michael Wilson
  */
 
-import React, { FormEvent } from "react";
-import axios from "axios";
+import React, { FormEvent } from 'react';
+import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
-import { isValidEmail } from "../../utils/Utils";
-import { SIGNUP_ENDPOINT } from "../../utils/Endpoints";
+import { isValidEmail } from '../../utils/Utils';
+import { SIGNUP_ENDPOINT } from '../../utils/Endpoints';
+import { TranslationKeys } from './TranslationKeys';
+import PasswordInput from '../FormComponents/PasswordInput/PasswordInput';
 
-import "./SignUp.css";
+import './SignUp.css';
 
 const SignUpForm = () => {
+    const { t } = useTranslation('accounts/forms');
+
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
         const signupForm = document.getElementById('signup-form') as HTMLFormElement;
@@ -44,36 +49,37 @@ const SignUpForm = () => {
 
             // TODO: Handle error from backend
         }
-    }
+    };    
 
     return (
         <form
             onSubmit={handleSubmit}
-            method="post"
-            encType="multipart/form-data"
-            className="form"
-            id="signup-form"
+            method='post'
+            encType='multipart/form-data'
+            className='form'
+            id='signup-form'
         >
             <div className='form-label-container'>
-                <label htmlFor="signup-username">Username:</label>
-                <input type="text" id="signup-username" name="signup-username" required autoFocus></input>
+                <label htmlFor='signup-username'>{t(TranslationKeys.username)}:</label>
+                <input type='text' id='signup-username' name='signup-username' className='form-input' required autoFocus></input>
             </div>
             <div className='form-label-container'>
-                <label htmlFor="signup-password">Password:</label>
-                <input type="text" id="signup-password" name="signup-password" required></input>
+                <PasswordInput />
             </div>
             <div className='form-label-container'>
-                <label htmlFor="signup-email">Email:</label>
-                <input type="text" id="signup-email" name="signup-email" required></input>
+                <label htmlFor='signup-email'>{t(TranslationKeys.email)}:</label>
+                <input type='text' id='signup-email' name='signup-email' className='form-input' required></input>
             </div>
             <div className='form-label-container'>
-                <label htmlFor="signup-phone-number">
-                    Phone number:<br />
-                    <small>Format: xxx-xxx-xxxx</small>
+                <label htmlFor='signup-phone-number'>
+                    {t(TranslationKeys.phoneNumber)}:<br />
+                    <small>{t(TranslationKeys.phoneNumberFormat)}: xxx-xxx-xxxx</small>
                 </label>
-                <input type="tel" id="signup-phone-number" name="signup-phone-number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"></input>
+                <input type='tel' id='signup-phone-number' name='signup-phone-number' pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' className='form-input'></input>
             </div>
-            <button type="submit">Sign up now!</button>
+            <div className='form-label-container'>
+                <input type='submit' value={t(TranslationKeys.signUp)} className='form-submit' />
+            </div>
         </form>
     );
 }

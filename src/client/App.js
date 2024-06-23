@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 
-import FileList from './components/FileList/FileList.tsx';
-import FileUpload from './components/FileUpload/FileUpload.tsx';
-import NavDirectories from './components/NavDirectories/NavDirectories.tsx';
-import Navbar from './components/Navbar/Navbar.tsx';
+import FileList from './components/FileComponents/FileList/FileList.tsx';
+import FileUpload from './components/FileComponents/FileUpload/FileUpload.tsx';
+import NavDirectories from './components/NavComponents/NavDirectories/NavDirectories.tsx';
+import Navbar from './components/NavComponents/Navbar/Navbar.tsx';
 import ContentRenderer from './components/ContentRenderer/ContentRenderer.tsx';
 
 import './App.css';

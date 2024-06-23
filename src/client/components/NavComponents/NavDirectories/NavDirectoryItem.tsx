@@ -4,11 +4,11 @@
  * @verison 1.0.0
  * @author Michael Wilson
  */
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useTranslation } from "react-i18next";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useTranslation } from 'react-i18next';
 
-import { INavDirectoryItem } from "../../utils/Types";
+import { INavDirectoryItem } from '../../../utils/Types';
 
 import './NavDirectoryItem.css';
 

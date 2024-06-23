@@ -4,16 +4,17 @@
  * @verison 1.0.0
  * @author Michael Wilson
  */
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
 
-import CenteredModal from "../Modal/CenteredModal";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { mapStateToProps } from "../../utils/Constants";
-import { setLoggingInState } from "../../redux/loginSlice";
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+
+import CenteredModal from '../Modal/CenteredModal';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { mapStateToProps } from '../../utils/Constants';
+import { setLoggingInState } from '../../redux/loginSlice';
+import SignInForm from './SignInForm';
 
 import './SignIn.css';
-import SignInForm from "./SignInForm";
 
 const SignIn = () => {
     const dispatch = useAppDispatch();
@@ -33,7 +34,7 @@ const SignIn = () => {
         <>
             { !loginState.isLoggedIn && (
                 <div id='sign-in-container' className='btn'>
-                    <a onClick={() => dispatch(setLoggingInState(true))}>Sign In</a>
+                    <button className='nav-btn' onClick={() => dispatch(setLoggingInState(true))}>Sign In</button>
                     {showModal && <CenteredModal closeModalHandler={handleModalClose} title={'Log in'} form={<SignInForm />}/>}
                 </div>
             )}

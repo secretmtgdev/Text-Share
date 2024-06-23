@@ -4,16 +4,17 @@
  * @version 1.0.0
  * @author Michael Wilson
  */
-import axios, { AxiosError } from "axios";
-import React from "react";
-import { connect } from "react-redux";
 
-import { FILE_ENDPOINT } from "../../utils/Endpoints";
-import { IFileBlob } from "../../utils/Types";
-import { mapStateToProps } from "../../utils/Constants";
-import { useAppDispatch } from "../../redux/hooks";
-import { setFileErrorState, setSelectedFile } from "../../redux/fileSlice";
-import FileOptions from "../FileOptions/FileOptions";
+import axios, { AxiosError } from 'axios';
+import React from 'react';
+import { connect } from 'react-redux';
+
+import { FILE_ENDPOINT } from '../../../utils/Endpoints';
+import { IFileBlob } from '../../../utils/Types';
+import { mapStateToProps } from '../../../utils/Constants';
+import { useAppDispatch } from '../../../redux/hooks';
+import { setFileErrorState, setSelectedFile } from '../../../redux/fileSlice';
+import FileOptions from '../FileOptions/FileOptions';
 
 import './FileListItem.css';
 

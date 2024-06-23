@@ -26,26 +26,29 @@ This is a small project that leverages the RESTful architecture for uploading an
 
 
 ## Q & A
-- What can this project do?
+- **What can this project do?**
     - Read files from blob storage
     - Upload files to the database & blob storage
-- Will this project be expanded on?
+    - Sign up and sign in to upload and delete files
+- **Will this project be expanded on?**
     - Most likely yes but it is more of a sandbox to try things out for a bigger project
-- What tables are there?
+- **What tables are there?**
     - accounts
     - files
     - file_datastore
     - shared_files
 
 **_For more information, please refer to the [Database document](https://github.com/secretmtgdev/Kindle-like-prototype/blob/master/documents/DatabaseDoc.md)_**
-- What does the accounts table do?
+- **What does the accounts table do?**
     - Stores information on the username, password, email, and associated text via a list of filenames
     - Passwords are to be encrypted with a gen_salt algorithm
     - Since usernames are unique, the username will be a primary key to pull up saved content
-- What does the files table do?
+- **What does the files table do?**
     - Stores information about the filename, and upload date
-- What does the file_datastore table do?
+- **What does the file_datastore table do?**
     - Acts as blob storage linking to the files table through the foreign key filename in files
+- **What form of caching on the data tier is done?**
+    - Sadly Redis isn't free so I'm leveraging MongoDB
 
  
 ## Special thanks to the following resource owners

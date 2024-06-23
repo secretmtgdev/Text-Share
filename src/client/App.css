@@ -58,3 +58,18 @@ li:hover, div[role='listitem']:hover {
     flex-direction: column;
     padding: var(--small-padding);
 }
+
+.form-input {
+    height: 20px;
+    border-radius: 2px;
+}
+
+input.form-input {
+    border-width: 1px;
+}
+
+.form-submit {
+    background-color: lightgreen;
+    border: none;
+    padding: var(--small-padding);
+}

@@ -4,19 +4,19 @@
  * @version 1.0.0
  * @author Michael Wilson
  */
-import { faDownload, faFileSignature, faStar, faTrash, faUserPlus } from "@fortawesome/free-solid-svg-icons";
-import React from "react";
-import { useTranslation } from "react-i18next";
-import axios from "axios";
-import { connect } from "react-redux";
+import { faDownload, faFileSignature, faStar, faTrash, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import axios from 'axios';
+import { connect } from 'react-redux';
 
-import IconWrapper from "../IconWrapper/IconWrapper";
+import IconWrapper from '../../IconWrapper/IconWrapper';
 import { TranslationKeys } from './TranslationKeys';
-import { setFileActionPerformed, setFileErrorState } from "../../redux/fileSlice";
-import { FILE_ENDPOINT } from "../../utils/Endpoints";
-import { ERROR_TYPES, FILE_ACTIONS, IServerError } from "../../utils/Types";
-import { mapStateToProps } from "../../utils/Constants";
-import { useAppDispatch } from "../../redux/hooks";
+import { setFileActionPerformed, setFileErrorState } from '../../../redux/fileSlice';
+import { FILE_ENDPOINT } from '../../../utils/Endpoints';
+import { ERROR_TYPES, FILE_ACTIONS, IServerError } from '../../../utils/Types';
+import { mapStateToProps } from '../../../utils/Constants';
+import { useAppDispatch } from '../../../redux/hooks';
 
 import './FileOptions.css';
 

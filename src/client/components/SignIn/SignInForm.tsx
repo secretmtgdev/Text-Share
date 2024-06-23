@@ -5,12 +5,17 @@
  * @author Michael Wilson
  */
 
-import axios from "axios";
-import React, { FormEvent } from "react";
+import axios from 'axios';
+import React, { FormEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { SIGNIN_ENDPOINT } from "../../utils/Endpoints";
+import { SIGNIN_ENDPOINT } from '../../utils/Endpoints';
+import { TranslationKeys } from './TranslationKeys';
+import PasswordInput from '../FormComponents/PasswordInput/PasswordInput';
 
 const SignInForm = () => {
+    const { t } = useTranslation('accounts/forms');
+
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
         const signinForm = document.getElementById('signin-form') as HTMLFormElement;
@@ -40,20 +45,21 @@ const SignInForm = () => {
     return (
         <form
             onSubmit={handleSubmit}
-            method="post"
-            encType="multipart/form-data"
-            className="form"
-            id="signin-form"
+            method='post'
+            encType='multipart/form-data'
+            className='form'
+            id='signin-form'
         >
             <div className='form-label-container'>
-                <label htmlFor="signin-username">Username:</label>
-                <input type="text" id="signin-username" name="signin-username" autoFocus></input>
+                <label htmlFor='signin-username'>Username:</label>
+                <input type='text' id='signin-username' name='signin-username' autoFocus></input>
             </div>
             <div className='form-label-container'>
-                <label htmlFor="signin-password">Password:</label>
-                <input type="text" id="signin-password" name="signin-password"></input>
+                <PasswordInput />
             </div>
-            <button type="submit">Sign in</button>
+            <div className='form-label-container'>
+                <input type='submit' value={t(TranslationKeys.signIn)} className='form-submit' />
+            </div>
         </form>
     )
 }

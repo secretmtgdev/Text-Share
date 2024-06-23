@@ -4,17 +4,18 @@
  * @version 1.0.0
  * @author Michael Wilson
  */
-import axios, { AxiosError } from "axios";
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
 
-import UnableToLoadFiles from "../Errors/UnableToLoadFiles";
-import FileListItem from "./FileListItem";
-import { mapStateToProps } from "../../utils/Constants";
-import { FILES_ENDPOINT } from "../../utils/Endpoints";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { setFileErrorState } from "../../redux/fileSlice";
-import { ERROR_TYPES } from "../..//utils/Types";
+import axios, { AxiosError } from 'axios';
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+
+import UnableToLoadFiles from '../../Errors/UnableToLoadFiles';
+import FileListItem from './FileListItem';
+import { mapStateToProps } from '../../../utils/Constants';
+import { FILES_ENDPOINT } from '../../../utils/Endpoints';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
+import { setFileErrorState } from '../../../redux/fileSlice';
+import { ERROR_TYPES } from '../../../utils/Types';
 
 const FileList = () => {
     const dispatch = useAppDispatch();

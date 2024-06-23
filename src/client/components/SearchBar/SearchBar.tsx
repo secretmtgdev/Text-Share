@@ -5,9 +5,9 @@
  * @author Michael Wilson
  */
 
-import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import './SearchBar.css';
 
@@ -23,8 +23,8 @@ const SearchBar = () => {
 
     return (
         <div id='navbar-search'>
-            <input type="text" placeholder="Search.." onChange={(e) => updateSearchQuery(e)}/>
-            <button type="button" onClick={searchDirectory}>
+            <input type='text' placeholder='Search..' onChange={(e) => updateSearchQuery(e)}/>
+            <button type='button' onClick={searchDirectory}>
                 <FontAwesomeIcon icon={faSearch} />
             </button>
         </div>

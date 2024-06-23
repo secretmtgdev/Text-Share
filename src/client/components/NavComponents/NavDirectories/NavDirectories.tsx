@@ -5,11 +5,11 @@
  * @author Michael Wilson
  */
 
-import React from "react";
+import React from 'react';
 
-import { navDirectories } from "../../utils/Constants";
-import NavDirectoryItem from "./NavDirectoryItem";
-import { TranslationKeys } from "./TranslationKeys";
+import { navDirectories } from '../../../utils/Constants';
+import NavDirectoryItem from './NavDirectoryItem';
+import { TranslationKeys } from './TranslationKeys';
 
 const NavDirectories = () => {
     return (

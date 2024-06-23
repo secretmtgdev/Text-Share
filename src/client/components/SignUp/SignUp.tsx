@@ -5,16 +5,16 @@
  * @author Michael Wilson
  */
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
-import CenteredModal from "../Modal/CenteredModal";
-import { mapStateToProps } from "../../utils/Constants";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { setSigningUpState } from "../../redux/signupSlice";
-import SignUpForm from "./SignUpForm";
+import CenteredModal from '../Modal/CenteredModal';
+import { mapStateToProps } from '../../utils/Constants';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { setSigningUpState } from '../../redux/signupSlice';
+import SignUpForm from './SignUpForm';
 
-import "./SignUp.css";
+import './SignUp.css';
 
 const SignUp = () => {
     const dispatch = useAppDispatch();
@@ -34,7 +34,7 @@ const SignUp = () => {
         <>
             { !loginState.isLoggedIn && (
                 <div id='sign-up-container' className='btn'>
-                    <a onClick={() => dispatch(setSigningUpState(true))}>Sign Up</a>
+                    <button className='nav-btn' onClick={() => dispatch(setSigningUpState(true))}>Sign Up</button>
                     {showModal && <CenteredModal closeModalHandler={handleModalClose} title={'Sign up'} form={<SignUpForm />} />}
                 </div>
             )}

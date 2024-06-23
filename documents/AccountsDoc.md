@@ -33,5 +33,7 @@ Prior to signing in, users should have a view only mode of the page.
 
 ### Requirements
 - Users must enter a username and password
+- Users should have the option to show or hide the password
+- An incorrect password results in the account being locked (throttled request) for 30 minutes
 - Users can close the sign in modal with either the escape key or close button
 - If a user is signed in, the sign in and sign up options should be hidden

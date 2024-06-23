@@ -5,13 +5,13 @@
  * @author Michael Wilson
  */
 
-import React, { Dispatch, SetStateAction, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { connect } from "react-redux";
+import React, { Dispatch, SetStateAction } from 'react';
+import { useTranslation } from 'react-i18next';
+import { connect } from 'react-redux';
 
-import { IImage } from "../../utils/Types";
-import CenteredModal from "../Modal/CenteredModal";
-import { mapStateToProps } from "../../utils/Constants";
+import { IImage } from '../../utils/Types';
+import CenteredModal from '../Modal/CenteredModal';
+import { mapStateToProps } from '../../utils/Constants';
 
 export type GenericErrorProps = {
     setShowError: Dispatch<SetStateAction<boolean>>;
@@ -27,7 +27,7 @@ const GenericError = ({ setShowError, title, message, imgRef }: GenericErrorProp
             closeModalHandler={() => { setShowError(false) }}
             title={t(title)}
             form={(
-                <div id="error-container">
+                <div id='error-container'>
                     <p>
                         {t(message)}
                     </p>

@@ -5,11 +5,11 @@
  * @author Michael Wilson
  */
 
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 
-import { mapStateToProps } from "../../utils/Constants";
-import { useAppSelector } from "../../redux/hooks";
+import { mapStateToProps } from '../../utils/Constants';
+import { useAppSelector } from '../../redux/hooks';
 
 import './ContentRenderer.css';
 

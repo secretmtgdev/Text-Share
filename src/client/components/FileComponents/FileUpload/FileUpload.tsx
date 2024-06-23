@@ -5,18 +5,18 @@
  * @author Michael Wilson
  */
 
-import React, { FormEvent, useEffect, useState } from "react";
-import axios from "axios";
-import { useTranslation } from "react-i18next";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import React, { FormEvent, useEffect, useState } from 'react';
+import axios from 'axios';
+import { useTranslation } from 'react-i18next';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
-import UnableToUploadFile from "../Errors/UnableToUploadFile";
-import { FILE_ENDPOINT } from "../../utils/Endpoints";
-import { TranslationKeys } from "./TranlsationKeys";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { setFileActionPerformed, setFileErrorState } from "../../redux/fileSlice";
-import { ERROR_TYPES, FILE_ACTIONS, IServerError } from "../../utils/Types";
+import UnableToUploadFile from '../../Errors/UnableToUploadFile';
+import { FILE_ENDPOINT } from '../../../utils/Endpoints';
+import { TranslationKeys } from './TranlsationKeys';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
+import { setFileActionPerformed, setFileErrorState } from '../../../redux/fileSlice';
+import { ERROR_TYPES, FILE_ACTIONS, IServerError } from '../../../utils/Types';
 
 import './FileUpload.css';
 
@@ -99,7 +99,7 @@ const FileUpload = () => {
                         type='file'
                         name='files-to-upload'
                         accept='.txt'
-                        form="file-upload"
+                        form='file-upload'
                         required/>
                 </label>                
                 {canUpload && <button>Upload</button>}

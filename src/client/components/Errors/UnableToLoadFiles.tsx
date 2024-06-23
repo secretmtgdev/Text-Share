@@ -4,14 +4,14 @@
  * @version 1.0.0
  * @author Michael Wilson
  */
-import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { connect } from "react-redux";
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { connect } from 'react-redux';
 
-import GenericError from "./GenericError";
-import { useAppSelector } from "../../redux/hooks";
-import { mapStateToProps } from "../../utils/Constants";
-import { TranslationKeys } from "./TranslationKeys";
+import GenericError from './GenericError';
+import { useAppSelector } from '../../redux/hooks';
+import { mapStateToProps } from '../../utils/Constants';
+import { TranslationKeys } from './TranslationKeys';
 
 const UnableToLoadFiles = () => {
     const { t } = useTranslation('files/errors');
