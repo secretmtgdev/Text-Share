@@ -17,9 +17,15 @@ export interface IconWrapperProps {
 }
 
 const IconWrapper = ({ onClickHandler, ariaLabel, icon }: IconWrapperProps) => {
+    const onKeyDownHandler = (e: React.KeyboardEvent<HTMLDivElement>) => {
+        if (e.key === 'Enter') {
+            onClickHandler();
+        }
+    }
+
     return (
-        <div className='icon-wrapper' onClick={onClickHandler} title={ariaLabel}>
-            <div role='button' className='icon-btn' aria-label={ariaLabel}>
+        <div className='icon-wrapper' onClick={onClickHandler} title={ariaLabel} onKeyDown={onKeyDownHandler} tabIndex={0}>
+            <div role='button' className='icon-btn' aria-label={ariaLabel} tabIndex={1}>
                 <FontAwesomeIcon icon={icon} />
             </div>
         </div>

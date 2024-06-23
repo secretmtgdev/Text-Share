@@ -1,4 +1,5 @@
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import { AxiosHeaders } from "axios";
 
 export interface IFileBlob {
     blobData: string;
@@ -34,4 +35,21 @@ export enum FILE_ACTIONS {
 
 export interface IFile {
     name: string;
+}
+
+export interface IServerResponse {
+    error_msg: string;
+}
+
+export interface IAxiosResponse {
+    data: IServerResponse;
+    headers: AxiosHeaders;
+    status: number;
+    statusText: string;
+}
+
+export interface IServerError {
+    code: string;
+    message: string;
+    response: IAxiosResponse;
 }

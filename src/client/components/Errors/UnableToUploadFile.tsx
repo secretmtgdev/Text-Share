@@ -4,7 +4,7 @@
  * @version 1.0.0
  * @author Michael Wilson
  */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { connect } from "react-redux";
 
@@ -16,14 +16,25 @@ import { TranslationKeys } from "./TranslationKeys";
 const UnableToUploadFile = () => {
     const { t } = useTranslation('files/errors');
     const fileState = useAppSelector(state => state.fileState);
+    const [showError, setShowError] = useState(!!fileState.error);
+    useEffect(() => {
+        setShowError(!!fileState.error);
+    }, [fileState.error]);
+    
     return (
-        <GenericError
-            title={t(TranslationKeys.unableToUploadFile)} 
-            message={t(TranslationKeys.errorMessage, { 
-                code: `${fileState.error.code}`,
-                message: fileState.error.message}
-            )}
-        />
+        <>
+            {
+                showError &&
+                <GenericError
+                    setShowError={setShowError}
+                    title={t(TranslationKeys.unableToUploadFile)} 
+                    message={t(TranslationKeys.errorMessage, { 
+                        code: `${fileState.error.code}`,
+                        message: fileState.error.message}
+                    )}
+                />
+            }
+        </>       
     );
 };
 

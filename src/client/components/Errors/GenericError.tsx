@@ -4,29 +4,39 @@
  * @version 1.0.0
  * @author Michael Wilson
  */
-import React from "react";
+
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { connect } from "react-redux";
 
 import { IImage } from "../../utils/Types";
+import CenteredModal from "../Modal/CenteredModal";
+import { mapStateToProps } from "../../utils/Constants";
 
 export type GenericErrorProps = {
+    setShowError: Dispatch<SetStateAction<boolean>>;
     title: string;
     message: string;
     imgRef?: IImage;
 }
 
-const GenericError = ({ title, message, imgRef }: GenericErrorProps) => {
+const GenericError = ({ setShowError, title, message, imgRef }: GenericErrorProps) => {
     const { t } = useTranslation();
     return (
-        <div id="error-container">
-            <h2>{t(title)}</h2>
-            <p>
-                {t(message)}
-            </p>
-            {imgRef && 
-                <img src={imgRef.src} alt={t(imgRef.alt)} />}
-        </div>
+        <CenteredModal
+            closeModalHandler={() => { setShowError(false) }}
+            title={t(title)}
+            form={(
+                <div id="error-container">
+                    <p>
+                        {t(message)}
+                    </p>
+                    {imgRef && 
+                        <img src={imgRef.src} alt={t(imgRef.alt)} />}
+                </div>
+            )}
+        />
     );
 };
 
-export default GenericError;
+export default connect(mapStateToProps)(GenericError);

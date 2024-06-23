@@ -1,5 +1,11 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_cors import CORS
+from flask_jwt_extended import (
+    create_access_token,
+    get_jwt_identity,
+    jwt_required,
+    JWTManager
+)
 
 from PostgresHelpers import (
     getFileFromDataStore,
@@ -12,12 +18,21 @@ from PostgresHelpers import (
 )
 
 app = Flask(__name__)
+app.config["SECRET_KEY"] = "248e143a74cd4c27a8e4fc66abf13ac3"
 CORS(app)
+jwt = JWTManager(app)
 
 @app.route('/file', methods=['GET', 'POST', 'DELETE'])
+@jwt_required(optional=True)
 def handleFile():
+    current_identity = get_jwt_identity()
+    print(f'Current identity of user {current_identity}')
     match request.method:
         case 'POST':
+            if not current_identity:
+                return jsonify({
+                    'error_msg': 'current user does not have permission to upload files'
+                }), 403
             file = request.files.get('file')
             return uploadFile(file)
         
@@ -25,6 +40,10 @@ def handleFile():
             return getFileFromDataStore(request.args.get('fileName'));
 
         case 'DELETE':
+            if not current_identity:
+                return jsonify({
+                    'error_msg': 'current user does not have permission to delete files'
+                }), 403
             return deleteFile(request.get_json()['fileName'])
 
 def uploadFile(file_to_upload):
@@ -59,7 +78,12 @@ def signUp():
 def signIn():
     successfulLogin = isValidLogin(request.form)
     if successfulLogin:
-        print('SUCESSFULLY LOGGED IN')
+        access_token = create_access_token(identity=request.form['signin-username'])
+        return jsonify(access_token=access_token)
     else:
-        print('UNSUCCESSFUL LOGIN')
-    return {}
+        return jsonify({
+            'error_msg': 'Invalid username or password'
+        }), 401
+
+if __name__ == "__main__":
+    app.run(debug=True)
