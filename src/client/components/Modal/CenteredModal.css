@@ -10,7 +10,7 @@
 
 #centered-modal-content {
     background-color: lightgrey;
-    padding: var(--general-padding);
+    border-radius: 10px;
 }
 
 .modal-header {
@@ -18,4 +18,11 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    padding-top: var(--small-padding);
+    padding-left: var(--general-padding);
+    padding-right: var(--general-padding);
+}
+
+.modal-header > * {
+    margin: 0;
 }

@@ -11,7 +11,6 @@ import { useTranslation } from 'react-i18next';
 import './CenteredModal.css';
 import { TranslationKeys } from './TranslationKeys';
 import IconWrapper from '../IconWrapper/IconWrapper';
-import { SetTargetFocus } from '../../utils/Utils';
 
 export interface ICenterModalProps {
     closeModalHandler: () => void;
@@ -32,7 +31,7 @@ const CenteredModal = ({closeModalHandler, title, form}: ICenterModalProps) => {
         <div id='centered-modal-container' className='flex-column-container'>
             <div id='centered-modal-content' onKeyDown={handleKeyDown}>
                 <div className='modal-header'>
-                    <h1>{title}</h1>
+                    <h2>{title}</h2>
                     <IconWrapper
                         onClickHandler={closeModalHandler}
                         ariaLabel={t(TranslationKeys.closeModal, {

@@ -1,4 +1,4 @@
-export const SetTargetFocus = (target: HTMLElement) => {
-    console.error(`Setting focus on ${target}`);
-    target.focus();
+export const isValidEmail = (email: string) => {
+    const pattern = /^[a-zA-Z]+([\.-_]?\w+)*@\w+([\.-]?w+)*(\.\w{2,3})+$/
+    return pattern.test(email);
 }

@@ -1,14 +1,18 @@
 from flask import Flask, request
 from flask_cors import CORS
-from kafka import KafkaProducer
 
-from PostgresHelpers import getFileFromDataStore, uploadToDataStore, insertFile, getAllFiles, deleteFromDataStore
-
-import json
+from PostgresHelpers import (
+    getFileFromDataStore,
+    uploadToDataStore,
+    insertFile,
+    getAllFiles,
+    deleteFromDataStore,
+    addAccount,
+    isValidLogin
+)
 
 app = Flask(__name__)
 CORS(app)
-f = open("./notifications/NotificationConfig.json")
 
 @app.route('/file', methods=['GET', 'POST', 'DELETE'])
 def handleFile():
@@ -45,3 +49,17 @@ def getFiles():
     return {
         'fileNames': fileNames
     }
+
+@app.route('/signup', methods=['POST'])
+def signUp():    
+    addAccount(request.form)
+    return {}
+
+@app.route('/signin', methods=['POST'])
+def signIn():
+    successfulLogin = isValidLogin(request.form)
+    if successfulLogin:
+        print('SUCESSFULLY LOGGED IN')
+    else:
+        print('UNSUCCESSFUL LOGIN')
+    return {}

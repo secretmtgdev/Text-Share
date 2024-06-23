@@ -1,5 +1,6 @@
 :root {
     --general-padding: 25px;
+    --small-padding: 12px;
     --general-margin: 25px;
     --left-width: 25%;
     --animation-speed-fast: 0.1s;
@@ -47,11 +48,13 @@ li:hover, div[role='listitem']:hover {
 .form {
     flex-direction: column;
     display: flex;
-    padding: var(--general-padding);
+    padding-left: var(--small-padding);
+    padding-bottom: var(--small-padding);
+    padding-right: var(--small-padding);
 }
 
 .form-label-container {
     display: flex;
     flex-direction: column;
-    padding: calc(var(--general-padding) / 2);
+    padding: var(--small-padding);
 }
