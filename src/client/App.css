@@ -73,3 +73,7 @@ input.form-input {
     border: none;
     padding: var(--small-padding);
 }
+
+.form-submit:hover {
+    cursor: pointer;
+}

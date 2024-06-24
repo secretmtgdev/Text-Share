@@ -35,7 +35,7 @@ const SignUp = () => {
             { !loginState.isLoggedIn && (
                 <div id='sign-up-container' className='btn'>
                     <button className='nav-btn' onClick={() => dispatch(setSigningUpState(true))}>Sign Up</button>
-                    {showModal && <CenteredModal closeModalHandler={handleModalClose} title={'Sign up'} form={<SignUpForm />} />}
+                    {showModal && <CenteredModal closeModalHandler={handleModalClose} title={'Sign up'} form={<SignUpForm closeModalHandler={handleModalClose} />} />}
                 </div>
             )}
         </>

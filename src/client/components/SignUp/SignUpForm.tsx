@@ -16,7 +16,11 @@ import PasswordInput from '../FormComponents/PasswordInput/PasswordInput';
 
 import './SignUp.css';
 
-const SignUpForm = () => {
+export interface SignUpFormProps {
+    closeModalHandler: () => void;
+}
+
+const SignUpForm = ({ closeModalHandler }: SignUpFormProps) => {
     const { t } = useTranslation('accounts/forms');
 
     const handleSubmit = async (event: FormEvent) => {
@@ -41,8 +45,8 @@ const SignUpForm = () => {
                 }
             );
 
-            // TODO: Let the user know that the sign up was successful
             if (response.status === 200) {
+                closeModalHandler();
             }
         } catch (error) {
             console.error(error);
@@ -64,7 +68,7 @@ const SignUpForm = () => {
                 <input type='text' id='signup-username' name='signup-username' className='form-input' required autoFocus></input>
             </div>
             <div className='form-label-container'>
-                <PasswordInput />
+                <PasswordInput inputName='signup'/>
             </div>
             <div className='form-label-container'>
                 <label htmlFor='signup-email'>{t(TranslationKeys.email)}:</label>

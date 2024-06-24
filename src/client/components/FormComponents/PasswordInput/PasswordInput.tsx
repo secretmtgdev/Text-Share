@@ -14,15 +14,19 @@ import { TranslationKeys } from './TranslationKeys';
 
 import './PasswordInput.css';
 
-const PasswordInput = () => {
+export interface PasswordInputProps {
+    inputName: string;
+}
+
+const PasswordInput = ({ inputName }: PasswordInputProps) => {
     const { t } = useTranslation('accounts/forms');
     const [showPassword, setShowPassword] = useState(false);
 
     return (
         <div className='toggle-input-container'>
-            <label htmlFor='signup-password'>{t(TranslationKeys.password)}:</label>
+            <label htmlFor={`${inputName}-password`}>{t(TranslationKeys.password)}:</label>
             <span className='form-input-password form-input'>
-                <input type={showPassword ? 'password' : 'text'} id='signup-password' name='signup-password' required></input>
+                <input type={showPassword ? 'password' : 'text'} id={`${inputName}-password`} name={`${inputName}-password`} required></input>
                 <span className='password-toggle'>
                     {
                         showPassword ? (

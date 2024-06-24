@@ -13,7 +13,11 @@ import { SIGNIN_ENDPOINT } from '../../utils/Endpoints';
 import { TranslationKeys } from './TranslationKeys';
 import PasswordInput from '../FormComponents/PasswordInput/PasswordInput';
 
-const SignInForm = () => {
+export interface SignInFormProps {
+    closeModalHandler: () => void;
+}
+
+const SignInForm = ({ closeModalHandler }: SignInFormProps) => {
     const { t } = useTranslation('accounts/forms');
 
     const handleSubmit = async (event: FormEvent) => {
@@ -31,8 +35,8 @@ const SignInForm = () => {
                 }
             );
 
-            // TODO: Let the user know that the sign up was successful
             if (response.status === 200) {
+                closeModalHandler();
             }
         } catch (error) {
             console.error(error);
@@ -55,7 +59,7 @@ const SignInForm = () => {
                 <input type='text' id='signin-username' name='signin-username' autoFocus></input>
             </div>
             <div className='form-label-container'>
-                <PasswordInput />
+                <PasswordInput inputName='signin'/>
             </div>
             <div className='form-label-container'>
                 <input type='submit' value={t(TranslationKeys.signIn)} className='form-submit' />

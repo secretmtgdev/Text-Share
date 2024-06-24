@@ -35,7 +35,7 @@ const SignIn = () => {
             { !loginState.isLoggedIn && (
                 <div id='sign-in-container' className='btn'>
                     <button className='nav-btn' onClick={() => dispatch(setLoggingInState(true))}>Sign In</button>
-                    {showModal && <CenteredModal closeModalHandler={handleModalClose} title={'Log in'} form={<SignInForm />}/>}
+                    {showModal && <CenteredModal closeModalHandler={handleModalClose} title={'Log in'} form={<SignInForm closeModalHandler={handleModalClose}/>}/>}
                 </div>
             )}
         </>

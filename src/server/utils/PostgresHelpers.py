@@ -1,6 +1,6 @@
 import psycopg2
 
-import Constants
+import utils.Constants as Constants
 
 connection = psycopg2.connect(database='ShareDrive', host='localhost', port='5432')
 def dbContainsFile(fileName):
@@ -119,6 +119,7 @@ def addAccount(accountDetails):
     password = accountDetails.get('signup-password')
     email = accountDetails.get('signup-email')
     # phone = accountDetails.get('signup-phone-number')
+
     try:
         with connection.cursor() as cur:            
             if not accountExists(email):
@@ -132,8 +133,6 @@ def addAccount(accountDetails):
 
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
-    finally:
-        return False
     
 def isValidLogin(loginDetails):
     username = loginDetails.get('signin-username')
@@ -147,6 +146,7 @@ def isValidLogin(loginDetails):
                 raise Exception('NO USER FOUND')
 
             stored_password = query_result[0]
+            print(f'COMPARING {stored_password} and {password}')
             if stored_password != password:
                 raise Exception('PASSWORD IS INCORRECT')
             

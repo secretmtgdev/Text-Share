@@ -7,7 +7,7 @@ from flask_jwt_extended import (
     JWTManager
 )
 
-from PostgresHelpers import (
+from utils.PostgresHelpers import (
     getFileFromDataStore,
     uploadToDataStore,
     insertFile,
@@ -16,6 +16,8 @@ from PostgresHelpers import (
     addAccount,
     isValidLogin
 )
+
+from utils.Utils import userIsThrottled, incrementFailedAttempt, addUserLogin
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "248e143a74cd4c27a8e4fc66abf13ac3"
@@ -70,17 +72,28 @@ def getFiles():
     }
 
 @app.route('/signup', methods=['POST'])
-def signUp():    
-    addAccount(request.form)
+async def signUp():    
+    addedAccount = addAccount(request.form)
+    if addedAccount:
+        username = request.form.get('signup-username')
+        await addUserLogin(username)
     return {}
 
 @app.route('/signin', methods=['POST'])
-def signIn():
+async def signIn():
+    username = request.form.get('signin-username')
+    isThrottled = await userIsThrottled(username)
+    if isThrottled:
+        return jsonify({
+            'error_msg': 'User is throttled, please wait 30 minutes'
+        }), 429
+
     successfulLogin = isValidLogin(request.form)
     if successfulLogin:
         access_token = create_access_token(identity=request.form['signin-username'])
         return jsonify(access_token=access_token)
     else:
+        await incrementFailedAttempt(username)
         return jsonify({
             'error_msg': 'Invalid username or password'
         }), 401
