@@ -12,6 +12,8 @@ import { useTranslation } from 'react-i18next';
 import { SIGNIN_ENDPOINT } from '../../utils/Endpoints';
 import { TranslationKeys } from './TranslationKeys';
 import PasswordInput from '../FormComponents/PasswordInput/PasswordInput';
+import { useAppDispatch } from '../../redux/hooks';
+import { setLoginState } from '../../redux/loginSlice';
 
 export interface SignInFormProps {
     closeModalHandler: () => void;
@@ -19,6 +21,7 @@ export interface SignInFormProps {
 
 const SignInForm = ({ closeModalHandler }: SignInFormProps) => {
     const { t } = useTranslation('accounts/forms');
+    const dispatch = useAppDispatch();
 
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
@@ -36,9 +39,11 @@ const SignInForm = ({ closeModalHandler }: SignInFormProps) => {
             );
 
             if (response.status === 200) {
+                dispatch(setLoginState(true));
                 closeModalHandler();
             }
         } catch (error) {
+            dispatch(setLoginState(false));
             console.error(error);
 
             // TODO: Handle error from backend

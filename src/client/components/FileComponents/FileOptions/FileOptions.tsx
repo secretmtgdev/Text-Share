@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
 import IconWrapper from '../../IconWrapper/IconWrapper';
 import { TranslationKeys } from './TranslationKeys';
 import { setFileActionPerformed, setFileErrorState } from '../../../redux/fileSlice';
-import { FILE_ENDPOINT } from '../../../utils/Endpoints';
+import { FILES_ENDPOINT } from '../../../utils/Endpoints';
 import { ERROR_TYPES, FILE_ACTIONS, IServerError } from '../../../utils/Types';
 import { mapStateToProps } from '../../../utils/Constants';
 import { useAppDispatch } from '../../../redux/hooks';
@@ -34,7 +34,7 @@ const FileOptions = ({ fileName }: FileOptionsProps) => {
     const deleteFile = async () => {
         try {            
             // leverage axios for progress tracking
-            await axios.delete(FILE_ENDPOINT, 
+            await axios.delete(FILES_ENDPOINT, 
                 {
                     data: {
                         fileName
@@ -53,7 +53,7 @@ const FileOptions = ({ fileName }: FileOptionsProps) => {
             console.error(error);
             dispatch(
                 setFileErrorState({
-                    type: ERROR_TYPES.FILE_UPLOAD,
+                    type: ERROR_TYPES.FILE_DELETE,
                     code: 500,
                     message: `Could not delete file, reason being ${(error as IServerError).response.data.error_msg}`
                 })

@@ -5,6 +5,7 @@ import FileUpload from './components/FileComponents/FileUpload/FileUpload.tsx';
 import NavDirectories from './components/NavComponents/NavDirectories/NavDirectories.tsx';
 import Navbar from './components/NavComponents/Navbar/Navbar.tsx';
 import ContentRenderer from './components/ContentRenderer/ContentRenderer.tsx';
+import ErrorView from './components/Errors/ErrorView.tsx';
 
 import './App.css';
 
@@ -35,6 +36,7 @@ function App() {
         </div>
       </div>
       <ContentRenderer />
+      <ErrorView />
     </div>
   );
 }

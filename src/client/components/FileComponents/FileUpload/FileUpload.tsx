@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import UnableToUploadFile from '../../Errors/UnableToUploadFile';
-import { FILE_ENDPOINT } from '../../../utils/Endpoints';
+import { FILES_ENDPOINT } from '../../../utils/Endpoints';
 import { TranslationKeys } from './TranlsationKeys';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { setFileActionPerformed, setFileErrorState } from '../../../redux/fileSlice';
@@ -52,7 +52,7 @@ const FileUpload = () => {
         data.append('file', files[0]);
         try {            
             // leverage axios for progress tracking
-            const response = await axios.post(FILE_ENDPOINT, 
+            const response = await axios.post(FILES_ENDPOINT, 
                 data,
                 {
                     headers: {

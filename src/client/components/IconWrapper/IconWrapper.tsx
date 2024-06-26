@@ -25,7 +25,7 @@ const IconWrapper = ({ onClickHandler, ariaLabel, icon }: IconWrapperProps) => {
     }
 
     return (
-        <div className='icon-wrapper' onClick={onClickHandler} title={ariaLabel} onKeyDown={onKeyDownHandler} tabIndex={0}>
+        <div className='icon-wrapper' onClick={onClickHandler} title={ariaLabel} onKeyDown={onKeyDownHandler} tabIndex={0} autoFocus>
             <div role='button' className='icon-btn' aria-label={ariaLabel} tabIndex={1}>
                 <FontAwesomeIcon height='15px' width='15px' icon={icon} />
             </div>

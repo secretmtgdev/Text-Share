@@ -24,7 +24,7 @@ app.config["SECRET_KEY"] = "248e143a74cd4c27a8e4fc66abf13ac3"
 CORS(app)
 jwt = JWTManager(app)
 
-@app.route('/file', methods=['GET', 'POST', 'DELETE'])
+@app.route('/files', methods=['GET', 'POST', 'DELETE'])
 @jwt_required(optional=True)
 def handleFile():
     current_identity = get_jwt_identity()
@@ -39,7 +39,11 @@ def handleFile():
             return uploadFile(file)
         
         case 'GET':
-            return getFileFromDataStore(request.args.get('fileName'));
+            fileName = request.args.get('fileName', -1)
+            if fileName == -1:
+                return getFiles()
+            else:
+                return getFileFromDataStore(fileName);
 
         case 'DELETE':
             if not current_identity:
@@ -58,12 +62,6 @@ def deleteFile(file_to_delete):
     return {
         'success': 200
     }
-
-@app.route('/files', methods=['GET', 'POST'])
-def handleFiles():
-    if request.method == 'GET':
-        return getFiles()    
-
 
 def getFiles():
     fileNames = getAllFiles()

@@ -28,10 +28,10 @@ const CenteredModal = ({closeModalHandler, title, form}: ICenterModalProps) => {
     }
 
     return (
-        <div id='centered-modal-container' className='flex-column-container' tabIndex={0} autoFocus>
+        <div id='centered-modal-container' className='flex-column-container'>
             <div id='centered-modal-content' onKeyDown={handleKeyDown}>
                 <div className='modal-header'>
-                    <h2 tabIndex={1}>{title}</h2>
+                    <h2 tabIndex={0}>{title}</h2>
                     <IconWrapper
                         onClickHandler={closeModalHandler}
                         ariaLabel={t(TranslationKeys.closeModal, {

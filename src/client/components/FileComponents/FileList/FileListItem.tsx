@@ -9,7 +9,7 @@ import axios, { AxiosError } from 'axios';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { FILE_ENDPOINT } from '../../../utils/Endpoints';
+import { FILES_ENDPOINT } from '../../../utils/Endpoints';
 import { IFileBlob } from '../../../utils/Types';
 import { mapStateToProps } from '../../../utils/Constants';
 import { useAppDispatch } from '../../../redux/hooks';
@@ -27,7 +27,7 @@ const FileListItem = ({ fileName }: FileListItemProps) => {
     const dispatch = useAppDispatch();
     const getFile = async (fileName: string) => {
         try {
-            const response = await axios.get(FILE_ENDPOINT, {
+            const response = await axios.get(FILES_ENDPOINT, {
                 responseType: 'arraybuffer',
                 params: {
                     fileName
