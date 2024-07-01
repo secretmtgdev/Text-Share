@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Request, Body
 from models.loginModels import Login
+from models.logDataModels import LogData
 from datetime import datetime, timedelta
 
 router = APIRouter(prefix="", tags=['TextShare'])
@@ -80,4 +81,12 @@ async def updateUserLoginAttempt(request: Request, username):
     )
     return {
         "updated_count": response.modified_count
+    }
+
+@router.post("/logs")
+async def addLogData(request: Request, logData: LogData = Body(...)):
+    db = request.app.LogData
+    response = db.insert_one(logData.model_dump()) 
+    return {
+        "id": str(response.inserted_id)
     }

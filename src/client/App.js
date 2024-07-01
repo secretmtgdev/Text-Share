@@ -8,6 +8,7 @@ import ContentRenderer from './components/ContentRenderer/ContentRenderer.tsx';
 import ErrorView from './components/Errors/ErrorView.tsx';
 
 import './App.css';
+import Log from './components/Log/Log.jsx';
 
 // TODO: Set this in a configuration file
 const IS_DEBUG_MODE = true;
@@ -24,20 +25,38 @@ function App() {
   }, []);
 
   return (
-    <div id='app-container' className='flex-column-container'>
-      <Navbar />
-      <div id='file-controls-container'>
-        <div className='left-column'>
-          <FileUpload />
-          <NavDirectories />
+    <Log page='home'>
+      <div id='app-container' className='flex-column-container'>
+        <Navbar />
+        <div id='file-controls-container'>
+          <Log logImpression section='file-navigation'>
+            <div className='left-column'>
+              <Log logImpression component='FileUpload' elementName='file-upload'>
+                <FileUpload />
+              </Log>
+              <Log logImpression component='NavDirectories' elementName='nav-directories'>
+                <NavDirectories />
+              </Log>
+            </div>
+          </Log>
+          <Log logImpression section='file-list'>
+            <div className='right-column'>
+              <Log logImpression component='FileList' elementName='file-list'>
+                <FileList />
+              </Log>
+            </div>
+          </Log>
         </div>
-        <div className='right-column'>
-          <FileList />
-        </div>
+        <Log logImpression section='file-render'>
+          <Log logImpression component='ContentRenderer' elementName='content-renderer'>
+            <ContentRenderer />
+          </Log>
+        </Log>
+        <Log logImpression section='page-error'>
+          <ErrorView />
+        </Log>
       </div>
-      <ContentRenderer />
-      <ErrorView />
-    </div>
+    </Log>
   );
 }
 

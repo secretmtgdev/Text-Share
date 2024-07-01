@@ -28,7 +28,6 @@ jwt = JWTManager(app)
 @jwt_required(optional=True)
 def handleFile():
     current_identity = get_jwt_identity()
-    print(f'Current identity of user {current_identity}')
     match request.method:
         case 'POST':
             if not current_identity:
@@ -95,6 +94,12 @@ async def signIn():
         return jsonify({
             'error_msg': 'Invalid username or password'
         }), 401
+
+@app.route('/logs', methods=['POST'])
+async def logs():
+    logData = request.get_json()
+    print(logData)
+    return {}
 
 if __name__ == "__main__":
     app.run(debug=True)

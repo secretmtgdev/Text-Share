@@ -53,3 +53,11 @@ export interface IServerError {
     message: string;
     response: IAxiosResponse;
 }
+
+export interface ILogData {
+    page: string;
+    action: string;
+    section?: string;
+    component?: string;
+    elementName?: string;
+}
