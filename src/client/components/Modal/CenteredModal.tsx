@@ -4,7 +4,7 @@
  * @version 1.0.0
  * @author Michael Wilson
  */
-import React from 'react';
+import React, { memo } from 'react';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
 
@@ -18,7 +18,7 @@ export interface ICenterModalProps {
     form: React.ReactElement;
 }
 
-const CenteredModal = ({closeModalHandler, title, form}: ICenterModalProps) => {
+const CenteredModal = memo(({closeModalHandler, title, form}: ICenterModalProps) => {
     const { t } = useTranslation('accounts/modals');
     
     const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -44,6 +44,6 @@ const CenteredModal = ({closeModalHandler, title, form}: ICenterModalProps) => {
             </div>
         </div>
     );
-}
+});
 
 export default CenteredModal;
