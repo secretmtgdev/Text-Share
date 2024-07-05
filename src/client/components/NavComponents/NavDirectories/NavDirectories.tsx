@@ -14,7 +14,7 @@ import { TranslationKeys } from './TranslationKeys';
 const NavDirectories = () => {
     return (
         <ul id='nav-directories-list'>
-            {navDirectories.map(directoryItem => <NavDirectoryItem key={directoryItem.name} name={TranslationKeys[directoryItem.name]} icon={directoryItem.icon}/>)}
+            {navDirectories.map(directoryItem => <NavDirectoryItem key={directoryItem.uuid} name={TranslationKeys[directoryItem.name]} icon={directoryItem.icon}/>)}
         </ul>
     );
 }

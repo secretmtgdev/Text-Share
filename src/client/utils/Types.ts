@@ -7,7 +7,8 @@ export interface IFileBlob {
 
 export interface INavDirectoryItem {
     name: string;
-    icon: IconDefinition
+    icon: IconDefinition,
+    uuid: string;
 }
 
 export interface IImage {

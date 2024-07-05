@@ -4,15 +4,20 @@
  * @verison 1.0.0
  * @author Michael Wilson
  */
+
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
-
-import { INavDirectoryItem } from '../../../utils/Types';
 
 import './NavDirectoryItem.css';
 
-const NavDirectoryItem = ({ name, icon }: INavDirectoryItem) => {
+export interface NavDirectoryItemProps {
+    name: string,
+    icon: IconDefinition;
+}
+
+const NavDirectoryItem = ({ name, icon }: NavDirectoryItemProps) => {
     const { t } = useTranslation('directories/navDirectories');
     return (
         <li>
