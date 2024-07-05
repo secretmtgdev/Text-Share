@@ -16,7 +16,7 @@ import { FILES_ENDPOINT } from '../../../utils/Endpoints';
 import { TranslationKeys } from './TranlsationKeys';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { setFileActionPerformed, setFileErrorState } from '../../../redux/fileSlice';
-import { ERROR_TYPES, FILE_ACTIONS, IServerError } from '../../../utils/Types';
+import { ERROR_TYPES, FILE_ACTIONS, ServerLib } from '../../../utils/Types';
 
 import './FileUpload.css';
 
@@ -72,7 +72,7 @@ const FileUpload = () => {
                 setFileErrorState({
                     type: ERROR_TYPES.FILE_LIST,
                     code: 500,
-                    message: `Could not upload files, reason being ${(error as IServerError).response.data.error_msg}`
+                    message: `Could not upload files, reason being ${(error as ServerLib.IServerError).response.data.error_msg}`
                 })
             );
         }

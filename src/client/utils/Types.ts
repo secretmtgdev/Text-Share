@@ -38,27 +38,34 @@ export interface IFile {
     name: string;
 }
 
-export interface IServerResponse {
-    error_msg: string;
-}
+export namespace ServerLib {
+    export interface IServerResponse {
+        error_msg: string;
+    }
+    
+    export interface IAxiosResponse {
+        data: IServerResponse;
+        headers: AxiosHeaders;
+        status: number;
+        statusText: string;
+    }
+    
+    export interface IServerError {
+        code: string;
+        message: string;
+        response: IAxiosResponse;
+    }
+    
+    export interface ILogData {
+        page: string;
+        action: string;
+        section?: string;
+        component?: string;
+        elementName?: string;
+    }
 
-export interface IAxiosResponse {
-    data: IServerResponse;
-    headers: AxiosHeaders;
-    status: number;
-    statusText: string;
-}
-
-export interface IServerError {
-    code: string;
-    message: string;
-    response: IAxiosResponse;
-}
-
-export interface ILogData {
-    page: string;
-    action: string;
-    section?: string;
-    component?: string;
-    elementName?: string;
+    export interface IFileMetadata {
+        name: string;
+        uuid: string;
+    }
 }

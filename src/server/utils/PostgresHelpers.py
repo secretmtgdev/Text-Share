@@ -39,9 +39,9 @@ def insertFile(fileName):
 def getAllFiles():
     try:
         with connection.cursor() as cur:
-            cur.execute("SELECT file_name FROM files;")
+            cur.execute("SELECT file_name, uuid FROM files;")
             records = cur.fetchall()
-            return [fileName[0] for fileName in records]
+            return [{ 'name': file_metadata[0], 'uuid': file_metadata[1] } for file_metadata in records]
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
 

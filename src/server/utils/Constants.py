@@ -11,8 +11,8 @@ DELETE_FILE_BY_NAME = """
 """
 
 ADD_FILE = """
-    INSERT INTO files (file_name)
-    VALUES (%s);
+    INSERT INTO files (file_name, uuid)
+    VALUES (%s, gen_random_uuid());
 """
 
 GET_BLOB_BY_FILE_NAME = """

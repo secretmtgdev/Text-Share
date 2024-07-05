@@ -63,9 +63,9 @@ def deleteFile(file_to_delete):
     }
 
 def getFiles():
-    fileNames = getAllFiles()
+    fileMetadata = getAllFiles()
     return {
-        'fileNames': fileNames
+        'fileMetadata': fileMetadata
     }
 
 @app.route('/signup', methods=['POST'])

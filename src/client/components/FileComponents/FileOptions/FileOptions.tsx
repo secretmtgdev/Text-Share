@@ -14,7 +14,7 @@ import IconWrapper from '../../IconWrapper/IconWrapper';
 import { TranslationKeys } from './TranslationKeys';
 import { setFileActionPerformed, setFileErrorState } from '../../../redux/fileSlice';
 import { FILES_ENDPOINT } from '../../../utils/Endpoints';
-import { ERROR_TYPES, FILE_ACTIONS, IServerError } from '../../../utils/Types';
+import { ERROR_TYPES, FILE_ACTIONS, ServerLib } from '../../../utils/Types';
 import { mapStateToProps } from '../../../utils/Constants';
 import { useAppDispatch } from '../../../redux/hooks';
 
@@ -55,7 +55,7 @@ const FileOptions = ({ fileName }: FileOptionsProps) => {
                 setFileErrorState({
                     type: ERROR_TYPES.FILE_DELETE,
                     code: 500,
-                    message: `Could not delete file, reason being ${(error as IServerError).response.data.error_msg}`
+                    message: `Could not delete file, reason being ${(error as ServerLib.IServerError).response.data.error_msg}`
                 })
             );
         }

@@ -15,17 +15,17 @@ import { mapStateToProps } from '../../../utils/Constants';
 import { FILES_ENDPOINT } from '../../../utils/Endpoints';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { setFileErrorState } from '../../../redux/fileSlice';
-import { ERROR_TYPES } from '../../../utils/Types';
+import { ERROR_TYPES, ServerLib } from '../../../utils/Types';
 
 const FileList = () => {
     const dispatch = useAppDispatch();
     const fileState = useAppSelector(state => state.fileState);
-    const [fileList, setFileList] = useState(['']);
+    const [fileList, setFileList] = useState<ServerLib.IFileMetadata[]>([]);
     useEffect(() => {
         const getFiles = async () => {
             try {
                 const response = await axios.get(FILES_ENDPOINT);
-                setFileList(response.data.fileNames);
+                setFileList(response.data.fileMetadata);
             } catch (error) {
                 dispatch(
                     setFileErrorState({
@@ -44,7 +44,7 @@ const FileList = () => {
         <>
             {fileList.length > 0 && 
                 (<div role='list'>
-                    {fileList.map(fileName => <FileListItem key={fileName} fileName={fileName} />)}
+                    {fileList.map(fileMetadata => <FileListItem key={fileMetadata.uuid} fileName={fileMetadata.name} />)}
                 </div>)
             }
             {!!fileState.error.code && fileState.error.type === ERROR_TYPES.FILE_LIST && <UnableToLoadFiles />}     

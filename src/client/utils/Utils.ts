@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { ILogData } from "./Types";
+import { ServerLib } from "./Types";
 import { LOGS_ENDPOINT } from "./Endpoints";
 
 export const isValidEmail = (email: string) => {
@@ -8,7 +8,7 @@ export const isValidEmail = (email: string) => {
     return pattern.test(email);
 }
 
-export const sendLog = async (logData: ILogData) => {
+export const sendLog = async (logData: ServerLib.ILogData) => {
     if (!logData) {
         return;
     }
